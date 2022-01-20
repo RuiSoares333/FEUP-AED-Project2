@@ -52,7 +52,7 @@ list<int> Graph::dijkstra_path(int a, int b) {
 void Graph::dijkstra(int a) {
     for (int v=1; v<=n; v++){
         nodes[v].visited = false;
-        nodes[v].dist = INT32_MAX;
+        nodes[v].dist = INT32_MAX/2;
     }
     nodes[a].dist = 0;
     nodes[a].pred = a;
@@ -63,7 +63,7 @@ void Graph::dijkstra(int a) {
     while(heap.getSize() > 0){
         int min = heap.removeMin();
         nodes[min].visited = true;
-        if(nodes[min].dist == INT32_MAX) continue;
+        if(nodes[min].dist >= INT32_MAX) continue;
 
         for(Edge edge: nodes[min].adj){
             int dest = edge.dest;
@@ -81,7 +81,7 @@ void Graph::dijkstra(int a) {
 void Graph::bfs(int v) {
     for (int v=1; v<=n; v++) {
         nodes[v].visited = false;
-        nodes[v].dist = INT32_MAX;
+        nodes[v].dist = INT32_MAX/2;
         nodes[v].pred = -1;
     }
     queue<int> q; // queue of unvisited nodes
