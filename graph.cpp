@@ -26,7 +26,7 @@ void Graph::addEdge(int src, int dest, int weight) {
 // TODO
 int Graph::dijkstra_distance(int a, int b) {
     dijkstra(a);
-    if(nodes[b].dist == INT32_MAX) return -1;
+    if(nodes[b].dist >= INT32_MA/2) return -1;
     int dist = nodes[b].dist;
     return dist;
 }
@@ -37,7 +37,7 @@ int Graph::dijkstra_distance(int a, int b) {
 list<int> Graph::dijkstra_path(int a, int b) {
     list<int> path;
     dijkstra(a);
-    if(nodes[b].dist == INT32_MAX) return path;
+    if(nodes[b].dist >= INT32_MAX/2) return path;
     int pred = nodes[b].pred;
     while(pred != a){
         cout << pred << endl;
