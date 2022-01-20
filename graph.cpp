@@ -107,6 +107,7 @@ void Graph::bfs(int v) {
 int Graph::bfs_distance(int a, int b) {
     if(a==b) return 0;
     bfs(a);
+    if(nodes[b].dist == INT32_MAX/2) return -1;
     return nodes[b].dist;
 }
 
