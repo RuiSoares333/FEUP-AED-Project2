@@ -9,22 +9,22 @@
 #include <list>
 #include <iostream>
 #include <queue>
+#include <float.h>
 
 using namespace std;
 
 class Graph {
     struct Edge {
         int dest;   // Destination node
-        int weight; // An integer weight
+        double weight; // An integer weight
         string line;
     };
 
     struct Node {
         list<Edge> adj; // The list of outgoing edges (to adjacent nodes)
-        int dist;
+        double dist;
         int pred;
         bool visited;
-        string name;
     };
 
     int n;              // Graph size (vertices are numbered from 1 to n)
@@ -36,14 +36,15 @@ public:
     Graph(int nodes, bool dir = false);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, int weight = 1);
+    void addEdge(int src, int dest, double weight, string line);
+    bool hasEdge(int src, int dest, double weight, string line);
 
-    int dijkstra_distance(int a, int b);
+    double dijkstra_distance(int a, int b);
     list<int> dijkstra_path(int a, int b);
     void dijkstra(int a); //distancia para o grafo inteiro
 
     void bfs(int v);
-    int bfs_distance(int a, int b);
+    double bfs_distance(int a, int b);
     list<int> bfs_path(int a, int b);
 };
 
