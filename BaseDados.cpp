@@ -1,11 +1,40 @@
-//
-// Created by lucas on 18/01/22.
-//
-
 #include <cmath>
 #include "BaseDados.h"
 
-void BaseDados::loadAllLines() {  //lucas
+map<Stop, double> BaseDados::nearStops(double lat, double lon, double radius) {
+
+    map<Stop, double> nearStopsMap;
+    map<int, Stop>::iterator iter;
+    double distance;
+
+    for (iter = stopMap.begin(); iter != stopMap.end(); iter++) {
+        distance = haversine(lat, lon, iter->second.getLatitude(), iter->second.getLongitude());
+        if (distance <= radius)
+            nearStopsMap[iter->second] = distance;
+    }
+
+    return nearStopsMap;
+}
+
+map<Stop, double> BaseDados::nearestStop(double lat, double lon) {
+    map<Stop, double> nearestStopMap;
+    map<int, Stop>::iterator iter = stopMap.begin();
+    double distance = haversine(lat, lon, iter->second.getLatitude(), iter->second.getLongitude()), newDistance;
+    Stop nearestStop;
+
+    for (iter = stopMap.begin(); iter != stopMap.end(); iter++) {
+        newDistance = haversine(lat, lon, iter->second.getLatitude(), iter->second.getLongitude());
+        if (newDistance < distance) {
+            nearestStop = iter->second;
+            distance = newDistance;
+        }
+    }
+
+    nearestStopMap[nearestStop] = distance;
+    return nearestStopMap;
+}
+
+void BaseDados::loadAllLines() {
     ifstream lines;
     lines.open("../dataset/lines.csv");
     if(lines.is_open()){
@@ -23,6 +52,38 @@ void BaseDados::loadAllLines() {  //lucas
     else throw ("Lines.csv file not found in dataset folder!");
 }
 
+void BaseDados::loadLine(string code, string name) {
+    ifstream line;
+    int n, stopid, nextid;
+    string stop, next;
+    double weight;
+
+    for (int i = 0; i < 2; i++){
+        string rev = "";
+        if(i == 1) rev = "_rev";
+        if((code == "300" or code == "301" or code == "302" or code == "303") && i == 1) continue;
+        line.open("../dataset/line_" + code + "_" + to_string(i) + ".csv");
+
+        if(line.is_open()){
+            line >> n;
+            line >> stop;
+            for (int j = 2; j <= n; j++){
+                line >> next;
+
+                stopid = reverseStopMap[stop];
+                nextid = reverseStopMap[next];
+
+                weight = haversine(stopMap[stopid].getLatitude(), stopMap[stopid].getLongitude(), stopMap[nextid].getLatitude(), stopMap[nextid].getLongitude());
+                mGraph.addEdge(stopid, nextid, weight, code, name);
+                if(code[code.length() - 1] != 'M') dGraph.addEdge(stopid, nextid, weight, code+rev, name);
+                stop = next;
+            }
+        }
+        else throw ("line_" + code + "_" + to_string(i) + ".csv not found in dataset folder!");
+    }
+}
+
+/*
 void BaseDados::loadLine(string code, string name) {
     ifstream line;
     int n;
@@ -114,6 +175,7 @@ void BaseDados::loadLine(string code, string name) {
         }
     }
 }
+ */
 
 double BaseDados::haversine(double lat1, double lon1, double lat2, double lon2) {
     double dLat = (lat2 - lat1) *
@@ -134,8 +196,9 @@ double BaseDados::haversine(double lat1, double lon1, double lat2, double lon2) 
     return rad * c;
 }
 
-BaseDados::BaseDados(Graph dGraph, Graph mGraph, map<int, Stop> stopMap) : dGraph(dGraph), mGraph(mGraph) {
+BaseDados::BaseDados(Graph dGraph, Graph mGraph, map<int, Stop> stopMap, map<string, int> reverseStopMap) : dGraph(dGraph), mGraph(mGraph) {
     this->stopMap = stopMap;
+    this->reverseStopMap = reverseStopMap;
 }
 
 Graph BaseDados::getDGraph() const {

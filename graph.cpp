@@ -1,20 +1,18 @@
-// AED 2021/2022 - Aula Pratica 11
-// Pedro Ribeiro (DCC/FCUP) [17/01/2022]
-
 #include "graph.h"
 #include "minHeap.h"
 #include <climits>
+#include <utility>
 
 // Constructor: nr nodes and direction (default: undirected)
-Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
+Graph::Graph(int num) : n(num), nodes(num+1) {
 }
 
 // Add edge from source to destination with a certain weight
-void Graph::addEdge(int src, int dest, double weight, string line) {
+void Graph::addEdge(int src, int dest, double weight, const string& line, string name) {
     if (src<1 || src>n || dest<1 || dest>n) return;
-    if(hasEdge(src, dest, weight, line)) return;
-    nodes[src].adj.push_back({dest, weight, line});
-    if (!hasDir) nodes[dest].adj.push_back({src, weight, line});
+    if(hasEdge(src, dest, weight, line, name)) return;
+    nodes[src].adj.push_back({dest, weight, line, name});
+//    if (!hasDir) nodes[dest].adj.push_back({src, weight, line});
 }
 
 
@@ -27,7 +25,7 @@ void Graph::addEdge(int src, int dest, double weight, string line) {
 // TODO
 double Graph::dijkstra_distance(int a, int b) {
     dijkstra(a);
-    if(nodes[b].dist >= DBL_MAX/2) return -1;
+    if(nodes[b].dist == DBL_MAX) return -1;
     double dist = nodes[b].dist;
     return dist;
 }
@@ -35,25 +33,26 @@ double Graph::dijkstra_distance(int a, int b) {
 // ..............................
 // b) Caminho mais curto entre dois nós
 // TODO
-list<int> Graph::dijkstra_path(int a, int b) {
+list<Semipath> Graph::dijkstra_path(int a, int b) {
     list<int> path;
+    list <Semipath> ret;
     dijkstra(a);
-    if(nodes[b].dist >= DBL_MAX/2) return path;
+    if(nodes[b].dist == DBL_MAX) return ret;
     int pred = nodes[b].pred;
     while(pred != a){
-        cout << pred << endl;
         path.push_front(pred);
         pred = nodes[pred].pred;
     }
     path.push_front(a);
     path.push_back(b);
-    return path;
+
+    return get_path(path);
 }
 
 void Graph::dijkstra(int a) {
     for (int v=1; v<=n; v++){
         nodes[v].visited = false;
-        nodes[v].dist = DBL_MAX/2;
+        nodes[v].dist = DBL_MAX;
     }
     nodes[a].dist = 0;
     nodes[a].pred = a;
@@ -64,9 +63,9 @@ void Graph::dijkstra(int a) {
     while(heap.getSize() > 0){
         int min = heap.removeMin();
         nodes[min].visited = true;
-        if(nodes[min].dist >= DBL_MAX/2) continue;
+        if(nodes[min].dist == DBL_MAX) continue;
 
-        for(Edge edge: nodes[min].adj){
+        for(const Edge& edge: nodes[min].adj){
             int dest = edge.dest;
             double weight = edge.weight;
             if(!nodes[dest].visited && nodes[min].dist + weight < nodes[dest].dist){
@@ -76,13 +75,12 @@ void Graph::dijkstra(int a) {
             }
         }
     }
-
 }
 // Depth-First Search: example implementation
 void Graph::bfs(int v) {
     for (int v=1; v<=n; v++) {
         nodes[v].visited = false;
-        nodes[v].dist = DBL_MAX/2;
+        nodes[v].dist = DBL_MAX;
         nodes[v].pred = -1;
     }
     queue<int> q; // queue of unvisited nodes
@@ -108,14 +106,15 @@ void Graph::bfs(int v) {
 double Graph::bfs_distance(int a, int b) {
     if(a==b) return 0;
     bfs(a);
-    if(nodes[b].dist == DBL_MAX/2) return -1;
+    if(nodes[b].dist == DBL_MAX) return -1;
     return nodes[b].dist;
 }
 
-list<int> Graph::bfs_path(int a, int b){
+list<Semipath> Graph::bfs_path(int a, int b){
     bfs(a);
     list<int> path;
-
+    list <Semipath> ret;
+    if(nodes[b].dist == DBL_MAX) return ret;
     int pred = nodes[b].pred;
     while(pred != a) {
         path.push_front(pred);
@@ -123,13 +122,36 @@ list<int> Graph::bfs_path(int a, int b){
     }
     path.push_front(a);
     path.push_back(b);
-    return path;
+
+    return get_path(path);
 }
 
-bool Graph::hasEdge(int src, int dest, double weight, string line) {
+bool Graph::hasEdge(int src, int dest, double weight, string line, string name) {
     for(auto edge:nodes[src].adj){
         if(edge.dest == dest && edge.weight == weight && edge.line == line) return true;
     }
     return false;
 }
 
+
+list<Semipath> Graph::get_path(list<int> path){
+    list <Semipath> ret;
+    int stopid, nextid;
+
+    stopid = path.front();
+    path.pop_front();
+    while(path.size() > 1){
+        nextid = path.front();
+        path.pop_front();
+
+        for(auto edge: nodes[stopid].adj){
+            if(edge.dest == nextid){
+                ret.push_back(Semipath(stopid, edge.line, edge.name));
+                break;
+            }
+        }
+        stopid = nextid;
+    }
+    ret.push_back(Semipath(stopid, "", ""));
+    return ret;
+}

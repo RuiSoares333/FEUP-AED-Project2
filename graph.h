@@ -1,6 +1,3 @@
-// AED 2021/2022 - Aula Pratica 11
-// Pedro Ribeiro (DCC/FCUP) [17/01/2022]
-
 #ifndef _GRAPH_H_
 #define _GRAPH_H_
 
@@ -10,6 +7,7 @@
 #include <iostream>
 #include <queue>
 #include <float.h>
+#include "Semipath.h"
 
 using namespace std;
 
@@ -17,7 +15,7 @@ class Graph {
     struct Edge {
         int dest;   // Destination node
         double weight; // An integer weight
-        string line;
+        string line, name;
     };
 
     struct Node {
@@ -28,24 +26,25 @@ class Graph {
     };
 
     int n;              // Graph size (vertices are numbered from 1 to n)
-    bool hasDir;        // false: undirect; true: directed
+    bool hasDir = true;        // false: undirect; true: directed
     vector<Node> nodes; // The list of nodes being represented
 
 public:
     // Constructor: nr nodes and direction (default: undirected)
-    Graph(int nodes, bool dir = false);
+    Graph(int nodes);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, double weight, string line);
-    bool hasEdge(int src, int dest, double weight, string line);
+    void addEdge(int src, int dest, double weight, const string& line, string name);
+    bool hasEdge(int src, int dest, double weight, string line, string name);
 
     double dijkstra_distance(int a, int b);
-    list<int> dijkstra_path(int a, int b);
+    list<Semipath> dijkstra_path(int a, int b);
     void dijkstra(int a); //distancia para o grafo inteiro
 
     void bfs(int v);
     double bfs_distance(int a, int b);
-    list<int> bfs_path(int a, int b);
+    list<Semipath> bfs_path(int a, int b);
+    list<Semipath> get_path(list<int> path);
 };
 
 #endif

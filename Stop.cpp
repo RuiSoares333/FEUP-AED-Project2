@@ -43,3 +43,7 @@ double Stop::getLongitude() const {
 void Stop::setLongitude(double longitude) {
     Stop::longitude = longitude;
 }
+
+bool const Stop::operator<(const Stop &s2) const{
+    return code < s2.getCode();
+}

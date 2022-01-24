@@ -9,25 +9,16 @@ class Stop {
 
 public:
     const string &getCode() const;
-
     void setCode(const string &code);
-
     const string &getName() const;
-
     void setName(const string &name);
-
     const string &getZone() const;
-
     void setZone(const string &zone);
-
     double getLatitude() const;
-
     void setLatitude(double latitude);
-
     double getLongitude() const;
-
     void setLongitude(double longitude);
-
+    bool const operator<(const Stop &s2) const;
 private:
     string code, name, zone;
     double latitude, longitude;
