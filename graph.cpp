@@ -3,26 +3,16 @@
 #include <climits>
 #include <utility>
 
-// Constructor: nr nodes and direction (default: undirected)
 Graph::Graph(int num) : n(num), nodes(num+1) {
 }
-
-// Add edge from source to destination with a certain weight
+//O(log|E|), where E = edge(stop -> stop)
 void Graph::addEdge(int src, int dest, double weight, const string& line, string name) {
     if (src<1 || src>n || dest<1 || dest>n) return;
     if(hasEdge(src, dest, weight, line, name)) return;
     nodes[src].adj.push_back({dest, weight, line, name});
-//    if (!hasDir) nodes[dest].adj.push_back({src, weight, line});
 }
 
-
-// ----------------------------------------------------------
-// 1) Algoritmo de Dijkstra e caminhos mais curtos
-// ----------------------------------------------------------
-
-// ..............................
-// a) Distância entre dois nós
-// TODO
+//O(|E|log|V|), where V = stop, E = edge(stop -> stop)
 double Graph::dijkstra_distance(int a, int b) {
     dijkstra(a);
     if(nodes[b].dist == DBL_MAX) return -1;
@@ -30,9 +20,7 @@ double Graph::dijkstra_distance(int a, int b) {
     return dist;
 }
 
-// ..............................
-// b) Caminho mais curto entre dois nós
-// TODO
+//O(|E|log|V|), where V = stop, E = edge(stop -> stop)
 list<Semipath> Graph::dijkstra_path(int a, int b) {
     list<int> path;
     list <Semipath> ret;
@@ -49,6 +37,7 @@ list<Semipath> Graph::dijkstra_path(int a, int b) {
     return get_path(path);
 }
 
+//O(|E|log|V|), where V = stop, E = edge(stop -> stop)
 void Graph::dijkstra(int a) {
     for (int v=1; v<=n; v++){
         nodes[v].visited = false;
@@ -76,7 +65,8 @@ void Graph::dijkstra(int a) {
         }
     }
 }
-// Depth-First Search: example implementation
+
+//O(|E|), where E = edge(stop -> stop)
 void Graph::bfs(int v) {
     for (int v=1; v<=n; v++) {
         nodes[v].visited = false;
@@ -103,6 +93,7 @@ void Graph::bfs(int v) {
     }
 }
 
+//O(|E|), where E = edge(stop -> stop)
 double Graph::bfs_distance(int a, int b) {
     if(a==b) return 0;
     bfs(a);
@@ -110,6 +101,7 @@ double Graph::bfs_distance(int a, int b) {
     return nodes[b].dist;
 }
 
+//O(|E|), where E = edge(stop -> stop)
 list<Semipath> Graph::bfs_path(int a, int b){
     bfs(a);
     list<int> path;
@@ -126,6 +118,7 @@ list<Semipath> Graph::bfs_path(int a, int b){
     return get_path(path);
 }
 
+//O(log|E|), where E = edge(stop -> stop)
 bool Graph::hasEdge(int src, int dest, double weight, string line, string name) {
     for(auto edge:nodes[src].adj){
         if(edge.dest == dest && edge.weight == weight && edge.line == line) return true;
@@ -133,7 +126,7 @@ bool Graph::hasEdge(int src, int dest, double weight, string line, string name) 
     return false;
 }
 
-
+//O(log|V|*log|E|), where V = stops, E = edge(stop -> stop)
 list<Semipath> Graph::get_path(list<int> path){
     list <Semipath> ret;
     int stopid, nextid;

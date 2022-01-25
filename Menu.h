@@ -14,9 +14,12 @@ class Menu {
 public:
     static void drawEscolhaDN();
     static void drawEscolhaParCor();
+    static void drawInputPar(bool origem);
+    static void drawInputCoord(bool origem, bool lat);
 
     static int getNumInput();
-    static int getStrInput();
+    static string getStrInput();
+    static double getDoubleInput();
 };
 
 

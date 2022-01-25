@@ -1,6 +1,6 @@
 #include <cmath>
 #include "BaseDados.h"
-
+// O(|V|log|V|), where V = stops
 map<Stop, double> BaseDados::nearStops(double lat, double lon, double radius) {
 
     map<Stop, double> nearStopsMap;
@@ -16,6 +16,7 @@ map<Stop, double> BaseDados::nearStops(double lat, double lon, double radius) {
     return nearStopsMap;
 }
 
+// O(|V|log|V|), where V = stops
 map<Stop, double> BaseDados::nearestStop(double lat, double lon) {
     map<Stop, double> nearestStopMap;
     map<int, Stop>::iterator iter = stopMap.begin();
@@ -34,6 +35,32 @@ map<Stop, double> BaseDados::nearestStop(double lat, double lon) {
     return nearestStopMap;
 }
 
+void BaseDados::onFootStops() {
+
+    map<int, Stop>::iterator iter1;
+    map<Stop, double>::iterator iter2;
+
+    for (iter1 = stopMap.begin(); iter1 != stopMap.end(); iter1++) {
+        map<Stop, double> onFootMap = nearStops(iter1->second.getLatitude(), iter1->second.getLongitude(), 0.15);
+
+        for (iter2 = onFootMap.begin(); iter2 != onFootMap.end(); iter2++) {
+
+            if (iter2->first.getLatitude() != iter1->second.getLatitude() && iter2->first.getLongitude() != iter1->second.getLongitude()) {
+
+                pmGraph.addEdge(reverseStopMap[iter1->second.getCode()], reverseStopMap[iter2->first.getCode()],
+                                iter2->second, "_PE", "Caminhar a pé.");
+
+                if(iter2->first.getCode()[iter2->first.getCode().length() - 1] != 'M')
+
+                    pdGraph.addEdge(reverseStopMap[iter1->second.getCode()],reverseStopMap[iter2->first.getCode()],
+                                    iter2->second, "_PE", "Caminhar a pé.");
+
+            }
+        }
+    }
+}
+
+//O(|L|*|V|log|E|) where L = lines, V = stops, E = edge(stop -> stop)
 void BaseDados::loadAllLines() {
     ifstream lines;
     lines.open("../dataset/lines.csv");
@@ -48,10 +75,13 @@ void BaseDados::loadAllLines() {
 
             loadLine(code, name);
         }
+        pmGraph = mGraph;
+        pdGraph = dGraph;
     }
     else throw ("Lines.csv file not found in dataset folder!");
 }
 
+//O(|V|log|E|), where V = stops, E = edge(stop -> stop)
 void BaseDados::loadLine(string code, string name) {
     ifstream line;
     int n, stopid, nextid;
@@ -83,100 +113,7 @@ void BaseDados::loadLine(string code, string name) {
     }
 }
 
-/*
-void BaseDados::loadLine(string code, string name) {
-    ifstream line;
-    int n;
-    string stop, next;
-    int stopid, nextid;
-    double weight;
-    bool foundid1, foundid2;
-    if(code == "300" or code == "301" or code == "302" or code == "303"){
-        //circulares - apenas tem dir = 0
-        line.open("../dataset/line_" + code + "_0.csv");
-        if(line.is_open()){
-            line >> n;
-            line >> stop;
-            for (int j = 0; j < n -1; j++){
-                foundid1 = false, foundid2 = false;
-                line >> next;
-                for (int k = 1; k <= stopMap.size(); k++){
-                    if(stopMap[k].getCode() == stop){
-                        stopid = k;
-                        foundid1 = true;
-                    }
-                    else if(stopMap[k].getCode() == next){
-                        nextid = k;
-                        foundid2 = true;
-                    }
-                    if(foundid1 && foundid2) break;
-                }
-                weight = haversine(stopMap[stopid].getLatitude(), stopMap[stopid].getLongitude(), stopMap[nextid].getLatitude(), stopMap[nextid].getLongitude());
-                mGraph.addEdge(stopid, nextid, weight, code);
-                dGraph.addEdge(stopid, nextid, weight, code);
-                stop = next;
-            }
-        } else throw ("line_" + code + "_0.csv not found in dataset folder!");
-    }
-    else if(code[code.length()-1] == 'M'){
-        //linhas madrugada - apenas adicionar ao grafo madrugada
-        for (int i = 0; i < 2; i++){
-            line.open("../dataset/line_" + code + "_" + to_string(i) + ".csv");
-            if(line.is_open()){
-                line >> n;
-                line >> stop;
-                for (int j = 0; j < n -1; j++){
-                    foundid1 = false, foundid2 = false;
-                    line >> next;
-                    for (int k = 1; k <= stopMap.size(); k++){
-                        if(stopMap[k].getCode() == stop){
-                            stopid = k;
-                            foundid1 = true;
-                        }
-                        else if(stopMap[k].getCode() == next){
-                            nextid = k;
-                            foundid2 = true;
-                        }
-                        if(foundid1 && foundid2) break;
-                    }
-                    weight = haversine(stopMap[stopid].getLatitude(), stopMap[stopid].getLongitude(), stopMap[nextid].getLatitude(), stopMap[nextid].getLongitude());
-                    mGraph.addEdge(stopid, nextid, weight, code);
-                    stop = next;
-                }
-            } else throw ("line_" + code + "_" + to_string(i) + ".csv not found in dataset folder!");
-        }
-    }
-    else{
-        for (int i = 0; i < 2; i++){
-            line.open("../dataset/line_" + code + "_" + to_string(i) + ".csv");
-            if(line.is_open()){
-                line >> n;
-                line >> stop;
-                for (int j = 0; j < n -1; j++){
-                    foundid1 = false, foundid2 = false;
-                    line >> next;
-                    for (int k = 1; k <= stopMap.size(); k++){
-                        if(stopMap[k].getCode() == stop){
-                            stopid = k;
-                            foundid1 = true;
-                        }
-                        else if(stopMap[k].getCode() == next){
-                            nextid = k;
-                            foundid2 = true;
-                        }
-                        if(foundid1 && foundid2) break;
-                    }
-                    weight = haversine(stopMap[stopid].getLatitude(), stopMap[stopid].getLongitude(), stopMap[nextid].getLatitude(), stopMap[nextid].getLongitude());
-                    dGraph.addEdge(stopid, nextid, weight, code);
-                    mGraph.addEdge(stopid, nextid, weight, code);
-                    stop = next;
-                }
-            } else throw ("line_" + code + "_" + to_string(i) + ".csv not found in dataset folder!");
-        }
-    }
-}
- */
-
+//O(1)
 double BaseDados::haversine(double lat1, double lon1, double lat2, double lon2) {
     double dLat = (lat2 - lat1) *
                   M_PI / 180.0;
@@ -196,9 +133,19 @@ double BaseDados::haversine(double lat1, double lon1, double lat2, double lon2) 
     return rad * c;
 }
 
-BaseDados::BaseDados(Graph dGraph, Graph mGraph, map<int, Stop> stopMap, map<string, int> reverseStopMap) : dGraph(dGraph), mGraph(mGraph) {
+BaseDados::BaseDados(Graph dGraph, Graph mGraph, Graph pdGraph, Graph pmGraph, map<int, Stop> stopMap, map<string, int> reverseStopMap) : dGraph(dGraph), mGraph(mGraph),
+                                                                                                                                          pdGraph(pdGraph),
+                                                                                                                                          pmGraph(pmGraph) {
     this->stopMap = stopMap;
     this->reverseStopMap = reverseStopMap;
+}
+
+map<string, int> BaseDados::getReverseStopMap() const{
+    return reverseStopMap;
+}
+
+map<int, Stop> BaseDados::getStopMap() const {
+    return stopMap;
 }
 
 Graph BaseDados::getDGraph() const {
@@ -207,4 +154,12 @@ Graph BaseDados::getDGraph() const {
 
 Graph BaseDados::getMGraph() const {
     return mGraph;
+}
+
+const Graph &BaseDados::getPdGraph() const {
+    return pdGraph;
+}
+
+const Graph &BaseDados::getPmGraph() const {
+    return pmGraph;
 }
