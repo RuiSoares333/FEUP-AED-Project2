@@ -167,10 +167,10 @@ int getParagem(bool paragens, bool origem, const BaseDados& bd){
     }
     else{
         Menu::drawInputCoord(origem, true);
-        double lat = Menu::getNumInput();
+        double lat = Menu::getDoubleInput();
 
         Menu::drawInputCoord(origem, false);
-        double lon = Menu::getNumInput();
+        double lon = Menu::getDoubleInput();
 
         map<int, Stop>::iterator it;
         for(it = bd.getStopMap().begin(); it!=bd.getStopMap().end(); it++){
@@ -183,5 +183,7 @@ int getParagem(bool paragens, bool origem, const BaseDados& bd){
 }
 
 void getTravel(bool dia, int paragem1, int paragem2){
-    //algoritmo;
+    cout << dia << endl;
+    cout << paragem1 << endl;
+    cout << paragem2 << endl;
 }
