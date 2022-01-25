@@ -1,19 +1,15 @@
+#include <algorithm>
 #include <iostream>
-#include <fstream>
 #include "Menu.h"
 #include <map>
-#include <sstream>
 #include "BaseDados.h"
-#include "graph.h"
-#include "Stop.h"
-#include "Semipath.h"
 
 using namespace std;
 
-void mainMenu(Graph dia, Graph noite);
-void parCorMenu(bool dia, Graph g);
+void diaNoiteMenu(const BaseDados& bd);
+void parCorMenu(bool dia, const BaseDados& bd);
 void getTravel(bool dia, int paragem1, int paragem2);
-int getParagem(bool paragens, bool origem);
+int getParagem(bool paragens, bool origem, const BaseDados& bd);
 map<int, Stop> loadStops();
 map<string, int> reverseStops(map<int, Stop> map1);
 
@@ -74,7 +70,7 @@ int main() {
 //    cout << endl << endl;
 //    cout << "Code" << "   " << "Distance" << endl;
 //    cout << it->first.getCode() << "   " << it->second << endl;
-
+    diaNoiteMenu(bd);
     return 0;
 }
 // O(|V|), where V = stops
@@ -118,67 +114,73 @@ map<int, Stop> loadStops() {
 }
 
 // passar bd por parâmetro
-//void diaNoiteMenu(Graph dia, Graph noite){
-//    int input = -1;
-//    do {
-//        Menu::drawEscolhaDN();
-//        input = Menu::getNumInput();
-//        switch (input) {
-//            case 1 :
-//                parCorMenu(true, dia);
-//                break;
-//            case 2 :
-//                parCorMenu(false, noite);
-//                break;
-//            default:
-//                break;
-//        }
-//    } while (input!=0);
-//}
+void diaNoiteMenu(const BaseDados& bd){
+    int input;
+    do {
+        Menu::drawEscolhaDN();
+        input = Menu::getNumInput();
+        switch (input) {
+            case 1 :
+                parCorMenu(true, bd);
+                break;
+            case 2 :
+                parCorMenu(false, bd);
+                break;
+            default:
+                break;
+        }
+    } while (input!=0);
+}
 
-//void parCorMenu(bool dia, Graph g){
-//    int input = -1;
-//    do {
-//        Menu::drawEscolhaDN();
-//        input = Menu::getNumInput();
-//        switch (input) {
-//            case 1 :
-//                getTravel(dia, getParagem(true, true), getParagem(true, false));
-//                break;
-//            case 2 :
-//                getTravel(dia, getParagem(false, true), getParagem(false, false));
-//                break;
-//            default:
-//                break;
-//        }
-//    } while (input!=0);
-//}
+void parCorMenu(bool dia, const BaseDados& bd){
+    int input;
+    do {
+        Menu::drawEscolhaDN();
+        input = Menu::getNumInput();
+        switch (input) {
+            case 1 :
+                getTravel(dia, getParagem(true, true, bd), getParagem(true, false, bd));
+                break;
+            case 2 :
+                getTravel(dia, getParagem(false, true, bd), getParagem(false, false, bd));
+                break;
+            default:
+                break;
+        }
+    } while (input!=0);
+}
 
 
-//int getParagem(bool paragens, bool origem){
-//    if(paragens){
-//        Menu::drawInputPar(origem);
-//        string input = Menu::getStrInput();
-//        cin >> input;
-//        auto it = bd.getReverseStopMap().find(input);
-//        return it->second;
-//    }
-//    else{
-//        Menu::drawInputCoord(origem, true);
-//        double lat = Menu::getNumInput();
-//
-//        Menu::drawInputCoord(origem, false);
-//        double log = Menu::getNumInput();
-//
-//        map<int, Stop>::iterator it;
-//        for(it = bd.getStopMap().begin(); it!=bd.getStopMap().end(); it++){
-//            if(it->second.getLongitude()-log < 0.1 and it->second.getLatitude()-lat < 0.1){
-//                return it->first;
-//            }
-//        }
-//    }
-//    return -1;
-//}
+int getParagem(bool paragens, bool origem, const BaseDados& bd){
+    if(paragens){
+        Menu::drawInputPar(origem);
+        string input = Menu::getStrInput();
+        cin >> input;
+
+        map<string, int>::iterator it;
+        for(it = bd.getReverseStopMap().begin(); it!=bd.getReverseStopMap().end(); it++){
+            if(it->first == input){
+                return it->second;
+            }
+        }
+        return -1;
+    }
+    else{
+        Menu::drawInputCoord(origem, true);
+        double lat = Menu::getNumInput();
+
+        Menu::drawInputCoord(origem, false);
+        double lon = Menu::getNumInput();
+
+        map<int, Stop>::iterator it;
+        for(it = bd.getStopMap().begin(); it!=bd.getStopMap().end(); it++){
+            if(it->second.getLongitude()-lon < 0.1 and it->second.getLatitude()-lat < 0.1){
+                return it->first;
+            }
+        }
+    }
+    return -1;
+}
 
 void getTravel(bool dia, int paragem1, int paragem2){
     //algoritmo;
