@@ -1,6 +1,12 @@
 #include <cmath>
 #include "BaseDados.h"
-// O(|V|log|V|), where V = stops
+
+/// Cria um mapa com todas as paragens dentro de um raio, com centro na posição dada pelo utilizador
+/// \param lat latitude da posição do utilizador
+/// \param lon longitude da posição do utilizador
+/// \param radius raio dentro do qual queremos ver as paragens
+/// \param nearStopsMap mapa com as paragens dentro do raio dado e a respetiva distância ao utilizador
+/// Complexidade temporal: O(|V|log|V|), where V = stops
 map<Stop, double> BaseDados::nearStops(double lat, double lon, double radius) {
 
     map<Stop, double> nearStopsMap;
@@ -16,7 +22,11 @@ map<Stop, double> BaseDados::nearStops(double lat, double lon, double radius) {
     return nearStopsMap;
 }
 
-// O(|V|log|V|), where V = stops
+/// Cria um mapa com a paragem mais perto da posição dada pelo utilizador
+/// \param lat latitude da posição do utilizador
+/// \param lon longitude da posição do utilizador
+/// \return nearestStopMap mapa com a paragem mais próxima e a respetiva distância
+/// Complexidade temporal: O(|V|log|V|), where V = stops
 map<Stop, double> BaseDados::nearestStop(double lat, double lon) {
     map<Stop, double> nearestStopMap;
     map<int, Stop>::iterator iter = stopMap.begin();
@@ -35,32 +45,36 @@ map<Stop, double> BaseDados::nearestStop(double lat, double lon) {
     return nearestStopMap;
 }
 
+/// Adiciona aos grafos pdGraph e pmGraph, a cada paragem, ligações às paragens que estão a menos de 150 metros
+/// (walking distance) da própria
+/// Complexidade temporal: O(|V|^2 log|V|^2 log|E|) where V = stops, E = edge(stop -> stop)
 void BaseDados::onFootStops() {
 
     map<int, Stop>::iterator iter1;
     map<Stop, double>::iterator iter2;
 
     for (iter1 = stopMap.begin(); iter1 != stopMap.end(); iter1++) {
-        map<Stop, double> onFootMap = nearStops(iter1->second.getLatitude(), iter1->second.getLongitude(), 0.15);
+        map<Stop, double> onFootMap = nearStops(iter1->second.getLatitude(), iter1->second.getLongitude(), 0.1);
 
         for (iter2 = onFootMap.begin(); iter2 != onFootMap.end(); iter2++) {
 
             if (iter2->first.getLatitude() != iter1->second.getLatitude() && iter2->first.getLongitude() != iter1->second.getLongitude()) {
 
                 pmGraph.addEdge(reverseStopMap[iter1->second.getCode()], reverseStopMap[iter2->first.getCode()],
-                                iter2->second, "_PE", "Caminhar a pé.");
+                                iter2->second, "", "Caminhar a pe.");
 
                 if(iter2->first.getCode()[iter2->first.getCode().length() - 1] != 'M')
 
                     pdGraph.addEdge(reverseStopMap[iter1->second.getCode()],reverseStopMap[iter2->first.getCode()],
-                                    iter2->second, "_PE", "Caminhar a pé.");
+                                    iter2->second, "", "Caminhar a pe.");
 
             }
         }
     }
 }
 
-//O(|L|*|V|log|E|) where L = lines, V = stops, E = edge(stop -> stop)
+/// Abre o ficheiro lines.csv e procede para adicionar todas as linhas aos grafos, chamando a função loadLine
+/// Complexidade temporal: O(|L|*|V|log|E|) where L = lines, V = stops, E = edge(stop -> stop)
 void BaseDados::loadAllLines() {
     ifstream lines;
     lines.open("../dataset/lines.csv");
@@ -81,7 +95,10 @@ void BaseDados::loadAllLines() {
     else throw ("Lines.csv file not found in dataset folder!");
 }
 
-//O(|V|log|E|), where V = stops, E = edge(stop -> stop)
+/// Recebe o código e nome correspondentes a uma linha, lê essa linha do respetivo ficheiro e adiciona-a aos grafos
+/// \param code código da paragem que se pretende dar load
+/// \param name nome da paragem que se pretende dar load
+/// Complexidade temporal: O(|V|log|E|), where V = stops, E = edge(stop -> stop)
 void BaseDados::loadLine(string code, string name) {
     ifstream line;
     int n, stopid, nextid;
@@ -113,7 +130,12 @@ void BaseDados::loadLine(string code, string name) {
     }
 }
 
-//O(1)
+/// Calcula a distância entre dois pontos, tendo em conta a sua latitude e longitude
+/// \param lat1 latitude do ponto 1
+/// \param lon1 longitude do ponto 1
+/// \param lat2 latitude do ponto 2
+/// \param lon2 longitude do ponto 2
+/// Complexidade temporal: O(1)
 double BaseDados::haversine(double lat1, double lon1, double lat2, double lon2) {
     double dLat = (lat2 - lat1) *
                   M_PI / 180.0;
@@ -133,6 +155,14 @@ double BaseDados::haversine(double lat1, double lon1, double lat2, double lon2) 
     return rad * c;
 }
 
+/// Constructor
+/// Inicializa os grafos dGraph, mGraph, pdGraph e pmGraph e os mapas stopMap e reverseStopMap
+/// \param dGraph grafo para as linhas diurnas
+/// \param mGraph grafo para as linhas noturnas
+/// \param pdGraph grafo com as paragens a walking distance e linhas diurnas
+/// \param pmGraph grafo com as paragens a walking distance e linhas noturnas
+/// \param stopMap mapa com as keys sendo um id e os values sendo a paragem que lhe corresponde
+/// \param reverseStopMap mapa com as keys sendo o código da paragem e os values sendo o id dessa paragem
 BaseDados::BaseDados(Graph dGraph, Graph mGraph, Graph pdGraph, Graph pmGraph, map<int, Stop> stopMap, map<string, int> reverseStopMap) : dGraph(dGraph), mGraph(mGraph),
                                                                                                                                           pdGraph(pdGraph),
                                                                                                                                           pmGraph(pmGraph) {
@@ -140,26 +170,38 @@ BaseDados::BaseDados(Graph dGraph, Graph mGraph, Graph pdGraph, Graph pmGraph, m
     this->reverseStopMap = reverseStopMap;
 }
 
+/// Getter
+/// \return reverseStopMap retorna o mapa reverseStopMap
 map<string, int> BaseDados::getReverseStopMap() const{
     return reverseStopMap;
 }
 
+/// Getter
+/// \return StopMap retorna o mapa StopMap
 map<int, Stop> BaseDados::getStopMap() const {
     return stopMap;
 }
 
+/// Getter
+/// \return dGraph retorna o grafo dGraph
 Graph BaseDados::getDGraph() const {
     return dGraph;
 }
 
+/// Getter
+/// \return mGraph retorna o grafo mGraph
 Graph BaseDados::getMGraph() const {
     return mGraph;
 }
 
+/// Getter
+/// \return pdGraph retorna o grafo pdGraph
 const Graph &BaseDados::getPdGraph() const {
     return pdGraph;
 }
 
+/// Getter
+/// \return pmGraph retorna o grafo pmGraph
 const Graph &BaseDados::getPmGraph() const {
     return pmGraph;
 }

@@ -6,6 +6,25 @@
 
 using namespace std;
 
+void Menu::drawEscolhaTipoCam(){
+    cout << "--- Qual o tipo de caminho que deseja?" << endl;
+    cout << "1 - Menos paragens" << endl;
+    cout << "2 - Menor distancia" << endl << endl;
+}
+
+void Menu::drawEscolhaPe(){
+    cout << "--- Pretende poder andar a pe entre paragens? (Max 100m)" << endl;
+    cout << "1 - Sim" << endl;
+    cout << "2 - Nao" << endl << endl;
+}
+
+void Menu::drawEscolhaCor(){
+    cout << "--- Como Pretende Escolher a Paragem?" << endl;
+    cout << "1 - Mais Proxima" << endl;
+    cout << "2 - Escolher de uma Lista num Certo Raio" << endl << endl;
+    cout << "0 - Sair" << endl;
+}
+
 void Menu::drawEscolhaDN() {
     cout << "--- Escolha o Tipo de Horario ---" << endl;
     cout << "1 - Dia" << endl;
@@ -23,11 +42,11 @@ void Menu::drawEscolhaParCor() {
 
 void Menu::drawInputPar(bool origem) {
     if(origem){
-        cout << "--- Indique o Nome da Paragem de Origem ---" << endl;
+        cout << "--- Indique o Codigo da Paragem de Origem ---" << endl;
         cout << "Origem: ";
     }
     else{
-        cout << "--- Indique o Nome da Paragem de Destino ---" << endl;
+        cout << "--- Indique o Codigo da Paragem de Destino ---" << endl;
         cout << "Destino: ";
     }
 }
@@ -70,6 +89,7 @@ int Menu::getNumInput() {
 
 string Menu::getStrInput() {
     string input = "";
+//    cin >> input;
     try{
         cin >> input;
     } catch(const std::exception& e){

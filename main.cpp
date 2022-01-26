@@ -8,8 +8,8 @@ using namespace std;
 
 void diaNoiteMenu(const BaseDados& bd);
 void parCorMenu(bool dia, const BaseDados& bd);
-void getTravel(bool dia, int paragem1, int paragem2);
-int getParagem(bool paragens, bool origem, const BaseDados& bd);
+void getTravel(bool dia, int paragem1, int paragem2, BaseDados bd, double dist1, double dist2);
+int getParagem(bool paragens, bool origem, BaseDados bd);
 map<int, Stop> loadStops();
 map<string, int> reverseStops(map<int, Stop> map1);
 
@@ -22,58 +22,16 @@ int main() {
     Graph pmGraph = mGraph;
     BaseDados bd = BaseDados(dGraph, mGraph, pdGraph, pmGraph, stopMap, reverseStopMap); //stopmap<id, stop>  reversestopmap<code, id>
     bd.loadAllLines();
-
     bd.onFootStops();
 
-//    cout << d.bfs_distance(235, 2119) << endl;
-//
-//    list<Semipath> bfs_path = d.bfs_path(235, 2119);
-//    if(bfs_path.size() == 0){
-//        cout << -1 << endl;
-//    }
-//    else{
-//        list<Semipath>::iterator it = bfs_path.begin();
-//        for(int i = 0; i < bfs_path.size(); i++){
-//            cout << stopMap[(*it).getStopid()].getCode() << " " << (*it).getName() << endl;
-//            advance(it, 1);
-//        }
-//    }
-//
-
-
-//    cout << d.dijkstra_distance(235, 2119) << endl;
-//    list<Semipath> dijkstra_path = d.dijkstra_path(235, 2119);
-//    if(dijkstra_path.size() == 0){
-//        cout << -1 << endl;
-//    }
-//    else{
-//        list<Semipath>::iterator it = dijkstra_path.begin();
-//        for(int i = 0; i < dijkstra_path.size(); i++){
-//            cout << stopMap[(*it).getStopid()].getCode() << " " << (*it).getName() << endl;
-//            advance(it, 1);
-//        }
-//    }
-
-//    map<Stop, double> nearStopsMap = bd.nearStops(41.13, -8.6, 0.6);
-//    map<Stop,double>::iterator iter;
-//
-//    cout << "Code" << "   " << "Distance" << endl;
-//    for (iter = nearStopsMap.begin(); iter != nearStopsMap.end(); iter++) {
-//        cout << iter->first.getCode() << "   " << iter->second << endl;
-//    }
-//
-
-
-//    map<Stop, double> nearestStop = bd.nearestStop(41.13, -8.6);
-//
-//    map<Stop,double>::iterator it = nearestStop.begin();
-//    cout << endl << endl;
-//    cout << "Code" << "   " << "Distance" << endl;
-//    cout << it->first.getCode() << "   " << it->second << endl;
+    //Menu
     diaNoiteMenu(bd);
     return 0;
 }
-// O(|V|), where V = stops
+
+/// Cria um mapa com as keys sendo o código de uma paragem e os values sendo o id correspondente a essa paragem
+/// \param stopMap mapa com as keys sendo o id de uma paragem e os values sendo a paragem correspondente
+/// Complexidade temporal: O(|V|), where V = stops
 map<string, int> reverseStops(map<int, Stop> stopMap) {
     map<int, Stop>::iterator iter;
 
@@ -85,7 +43,8 @@ map<string, int> reverseStops(map<int, Stop> stopMap) {
     return reverseStopMap;
 }
 
-//O(|V|log|V|), where v = stops
+/// Lê as stops do ficheiro stops.csv e adiciona-as ao mapa stopMap, com as keys sendo o id de uma paragem, atribuído por auto-increment, e os values sendo a paragem correspondente
+/// Complexidade temporal: O(|V|log|V|), where v = stops
 map<int, Stop> loadStops() {
     map<int, Stop> stopMap;
     ifstream stops("../dataset/stops.csv");
@@ -133,37 +92,35 @@ void diaNoiteMenu(const BaseDados& bd){
 }
 
 void parCorMenu(bool dia, const BaseDados& bd){
-    int input;
+    int input, origem, destino;
     do {
-        Menu::drawEscolhaDN();
+        Menu::drawEscolhaParCor();
         input = Menu::getNumInput();
         switch (input) {
             case 1 :
-                getTravel(dia, getParagem(true, true, bd), getParagem(true, false, bd));
+                origem = getParagem(true, true, bd);
+                destino = getParagem(true, false, bd);
+                getTravel(dia, origem, destino, bd, 1, 1);
                 break;
             case 2 :
-                getTravel(dia, getParagem(false, true, bd), getParagem(false, false, bd));
+                origem = getParagem(false, true, bd);
+                destino = getParagem(false, false, bd);
+                getTravel(dia, origem , destino, bd, 1, 1);
                 break;
             default:
+                exit(0);
                 break;
         }
     } while (input!=0);
 }
 
 
-int getParagem(bool paragens, bool origem, const BaseDados& bd){
+int getParagem(bool paragens, bool origem, BaseDados bd){
     if(paragens){
         Menu::drawInputPar(origem);
         string input = Menu::getStrInput();
-        cin >> input;
 
-        map<string, int>::iterator it;
-        for(it = bd.getReverseStopMap().begin(); it!=bd.getReverseStopMap().end(); it++){
-            if(it->first == input){
-                return it->second;
-            }
-        }
-        return -1;
+        return bd.getReverseStopMap()[input];
     }
     else{
         Menu::drawInputCoord(origem, true);
@@ -172,18 +129,171 @@ int getParagem(bool paragens, bool origem, const BaseDados& bd){
         Menu::drawInputCoord(origem, false);
         double lon = Menu::getDoubleInput();
 
-        map<int, Stop>::iterator it;
-        for(it = bd.getStopMap().begin(); it!=bd.getStopMap().end(); it++){
-            if(it->second.getLongitude()-lon < 0.1 and it->second.getLatitude()-lat < 0.1){
-                return it->first;
+        Menu::drawEscolhaCor();
+        int input = Menu::getNumInput();
+        switch (input) {
+            case 1 :{
+                map<Stop, double> proxima = bd.nearestStop(lat, lon);
+                map<Stop, double>::iterator it = proxima.begin();
+                return bd.getReverseStopMap()[(*it).first.getCode()];
+                break;
             }
+            case 2 :{
+                double raio;
+                int count = 1;
+                map<string, int> reverse = bd.getReverseStopMap();
+                cout << "Qual o raio que esta disponivel a andar? (m)" << endl;
+                cin >> raio;
+                raio = raio / 1000;
+                map<Stop, double> proximas = bd.nearStops(lat, lon, raio);
+                cout << proximas.size() << endl;
+                for(auto pair : proximas){
+                    cout << count << " - ";
+                    cout << pair.first.getCode() << " - " << pair.second << " km" << endl;
+                    count++;
+                }
+
+                auto ite = proximas.begin();
+                auto ite2 = proximas.begin();
+//                for (int i = 1; i <= proximas.size(); i++){
+//                    cout << i << " - " << reverse[(*ite).first.getCode()] << " - " << (*ite).second << endl;
+//                    cout << 1 << endl;
+//                    advance(ite, 1);
+//                }
+                cout << "Escolha a paragem desejada" << endl;
+                int inp;
+                cin >> inp;
+                inp--;
+                advance(ite2, inp);
+                return reverse[(*ite2).first.getCode()];
+                break;}
+            default:
+                break;
         }
     }
     return -1;
 }
 
-void getTravel(bool dia, int paragem1, int paragem2){
-    cout << dia << endl;
-    cout << paragem1 << endl;
-    cout << paragem2 << endl;
+void getTravel(bool dia, int paragem1, int paragem2, BaseDados bd, double dist1, double dist2){
+    bool pe, bfs;
+    int escpe, escca;
+    Graph graph;
+    list<Semipath> path;
+    map<int, Stop> stopmap = bd.getStopMap();
+    //quer poder andar a pe?
+    Menu::drawEscolhaPe();
+    escpe = Menu::getNumInput();
+    switch(escpe){
+        case 2:
+            pe=false;
+            break;
+        default:
+            pe=true;
+            break;
+    }
+
+    Menu::drawEscolhaTipoCam();
+    escca = Menu::getNumInput();
+    switch(escca){
+        case 1 :
+            bfs = true;
+            break;
+        case 2:
+            bfs = false;
+            break;
+    }
+
+    //desenha o caminho
+    if(pe && bfs){ //andar a pe e caminho com menos paragens
+        if(dia){
+            graph = bd.getPdGraph();
+            cout << "Numero de Paragens: " << int(graph.bfs_distance(paragem1, paragem2)) << endl;
+            path = graph.bfs_path(paragem1, paragem2);
+            //TODO dizer a distancia a andar a pe
+            for(Semipath semi : path){
+                cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
+                if(semi.getName() != "") cout << "   |\n   || " << semi.getLine() << " | " << semi.getName() << "\n   |" << endl;
+            }
+            cout << endl << endl;
+        }
+        else{
+            graph = bd.getPmGraph();
+            cout << "Numero de Paragens: " << int(graph.bfs_distance(paragem1, paragem2)) << endl;
+            path = graph.bfs_path(paragem1, paragem2);
+            //TODO dizer a distancia a andar a pe
+            for(Semipath semi : path){
+                cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
+                if(semi.getName() != "") cout << "   |\n   || " << semi.getLine() << " | " << semi.getName() << "\n   |" << endl;
+            }
+            cout << endl << endl;
+        }
+    }
+    else if(pe && !bfs) {//andar a pe e caminho com menor distancia
+        if(dia){
+            graph = bd.getPdGraph();
+            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << "Km" << endl;
+            path = graph.dijkstra_path(paragem1, paragem2);
+            //TODO dizer a distancia a andar a pe
+            for(Semipath semi : path){
+                cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
+                if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+            }
+            cout << endl << endl;
+        }
+        else{
+            graph = bd.getPmGraph();
+            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << "Km" << endl;
+            path = graph.dijkstra_path(paragem1, paragem2);
+            //TODO dizer a distancia a andar a pe
+            for(Semipath semi : path){
+                cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
+                if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+            }
+            cout << endl << endl;
+        }
+    }
+    else if (!pe && bfs){ //nao andar a pe e caminho com menos paragens
+        if(dia){
+            graph = bd.getDGraph();
+            cout << "Numero de Paragens: " << int(graph.bfs_distance(paragem1, paragem2)) << endl;
+            path = graph.bfs_path(paragem1, paragem2);
+            for(Semipath semi : path){
+                cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
+                if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+            }
+            cout << endl << endl;
+        }
+        else{
+            graph = bd.getMGraph();
+            cout << "Numero de Paragens: " << int(graph.bfs_distance(paragem1, paragem2)) << endl;
+            path = graph.bfs_path(paragem1, paragem2);
+            for(Semipath semi : path){
+                cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
+                if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+            }
+            cout << endl << endl;
+        }
+    }
+    else{ //nao andar a pe e caminho com menor distancia
+        if(dia){
+            graph = bd.getDGraph();
+            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << "Km" << endl;
+            path = graph.dijkstra_path(paragem1, paragem2);
+            for(Semipath semi : path){
+                cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
+                if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+            }
+            cout << endl << endl;
+        }
+        else{
+            graph = bd.getMGraph();
+            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << "Km" << endl;
+            path = graph.dijkstra_path(paragem1, paragem2);
+            for(Semipath semi : path){
+                cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
+                if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+            }
+            cout << endl << endl;
+        }
+    }
 }

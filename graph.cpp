@@ -148,3 +148,5 @@ list<Semipath> Graph::get_path(list<int> path){
     ret.push_back(Semipath(stopid, "", ""));
     return ret;
 }
+
+Graph::Graph() {}

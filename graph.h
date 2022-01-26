@@ -45,6 +45,8 @@ public:
     double bfs_distance(int a, int b);
     list<Semipath> bfs_path(int a, int b);
     list<Semipath> get_path(list<int> path);
+
+    Graph();
 };
 
 #endif

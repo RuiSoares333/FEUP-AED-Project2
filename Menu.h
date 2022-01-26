@@ -20,6 +20,10 @@ public:
     static int getNumInput();
     static string getStrInput();
     static double getDoubleInput();
+
+    static void drawEscolhaCor();
+    static void drawEscolhaPe();
+    static void drawEscolhaTipoCam();
 };
 
 
