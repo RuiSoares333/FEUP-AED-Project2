@@ -1,0 +1,174 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_a284b99bdb07994225dee3c2cdb59c80a}{Graph}} (int nodes)
+\item 
+void \mbox{\hyperlink{class_graph_a2a3d42ec151dde785f8d5b1e30d40b63}{add\+Edge}} (int src, int dest, double weight, const string \&line, string name)
+\item 
+bool \mbox{\hyperlink{class_graph_a71c0f76f6a96f48e41675f6ebc93eba1}{has\+Edge}} (int src, int dest, double weight, string line, string name)
+\item 
+double \mbox{\hyperlink{class_graph_a7f995601c667d9c0586c288887a79a02}{dijkstra\+\_\+distance}} (int a, int b)
+\item 
+list$<$ \mbox{\hyperlink{class_semipath}{Semipath}} $>$ \mbox{\hyperlink{class_graph_a219b8c662e4b5fe6607f5f2166a9beff}{dijkstra\+\_\+path}} (int a, int b)
+\item 
+void \mbox{\hyperlink{class_graph_a53445b1a1bb60ff231f8c46c86dd3912}{dijkstra}} (int a)
+\item 
+void \mbox{\hyperlink{class_graph_ae1e45e27c60711dadec619ca17e830a4}{bfs}} (int v)
+\item 
+double \mbox{\hyperlink{class_graph_a21595f74a39ec9bb851b6653c0fd1826}{bfs\+\_\+distance}} (int a, int b)
+\item 
+list$<$ \mbox{\hyperlink{class_semipath}{Semipath}} $>$ \mbox{\hyperlink{class_graph_abfc57714303c9b62bb6d40a80c11f67c}{bfs\+\_\+path}} (int a, int b)
+\item 
+list$<$ \mbox{\hyperlink{class_semipath}{Semipath}} $>$ \mbox{\hyperlink{class_graph_a5faaebcba525ad62a547218d410235f9}{get\+\_\+path}} (list$<$ int $>$ path)
+\item 
+\mbox{\Hypertarget{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}\label{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}} 
+{\bfseries Graph} ()
+\begin{DoxyCompactList}\small\item\em Construtor Default, vazio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_a284b99bdb07994225dee3c2cdb59c80a}\label{class_graph_a284b99bdb07994225dee3c2cdb59c80a}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+Construtor Inicializa o grafo com o número máximo de paragens num 
+\begin{DoxyParams}{Parameters}
+{\em num} & int, número máximo de paragens guardadas no grafo \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_a2a3d42ec151dde785f8d5b1e30d40b63}\label{class_graph_a2a3d42ec151dde785f8d5b1e30d40b63}} 
+\index{Graph@{Graph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily void Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{int}]{src,  }\item[{int}]{dest,  }\item[{double}]{weight,  }\item[{const string \&}]{line,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+Adiciona uma edge ao grafo que vai de src até dest com direção 
+\begin{DoxyParams}{Parameters}
+{\em src} & int, id da paragem de origem da edge \\
+\hline
+{\em dest} & int, id da paragem de destino da edge \\
+\hline
+{\em weight} & double, distancia em kilometros entre as paragens src e dest \\
+\hline
+{\em line} & string, código da linha que conecta as duas paragens \\
+\hline
+{\em name} & string, nome da linha que conecta as duas paragens Complexidade Temporal\+: O(log$\vert$\+E$\vert$), where E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_ae1e45e27c60711dadec619ca17e830a4}\label{class_graph_ae1e45e27c60711dadec619ca17e830a4}} 
+\index{Graph@{Graph}!bfs@{bfs}}
+\index{bfs@{bfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily void Graph\+::bfs (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+Algoritmo de Pesquisa em Largura (BFS) que atribui, a todas as paragens do grafo, a distância (double), em número de paragens, até á paragem \textquotesingle{}a\textquotesingle{} e a paragem precedente até à paragem \textquotesingle{}a\textquotesingle{} 
+\begin{DoxyParams}{Parameters}
+{\em a} & int, id da paragem de origem Complexidade Temporal\+: O($\vert$\+E$\vert$), where E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a21595f74a39ec9bb851b6653c0fd1826}\label{class_graph_a21595f74a39ec9bb851b6653c0fd1826}} 
+\index{Graph@{Graph}!bfs\_distance@{bfs\_distance}}
+\index{bfs\_distance@{bfs\_distance}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfs\_distance()}{bfs\_distance()}}
+{\footnotesize\ttfamily double Graph\+::bfs\+\_\+distance (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+Calcula e retorna a distancia (double), em número de paragens, entre as paragens a e b, usando o algoritmo BFS 
+\begin{DoxyParams}{Parameters}
+{\em a} & int, id da paragem de origem \\
+\hline
+{\em b} & int, id da paragem de destino Complexidade Temporal\+: O($\vert$\+E$\vert$), where E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_abfc57714303c9b62bb6d40a80c11f67c}\label{class_graph_abfc57714303c9b62bb6d40a80c11f67c}} 
+\index{Graph@{Graph}!bfs\_path@{bfs\_path}}
+\index{bfs\_path@{bfs\_path}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfs\_path()}{bfs\_path()}}
+{\footnotesize\ttfamily list$<$ \mbox{\hyperlink{class_semipath}{Semipath}} $>$ Graph\+::bfs\+\_\+path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+Calcula e retorna o caminho (List$<$\+Semipath$>$) entre as paragens a e b, usando o algoritmo BFS 
+\begin{DoxyParams}{Parameters}
+{\em a} & int, id da paragem de origem \\
+\hline
+{\em b} & int, id da paragem de destino Complexidade Temporal\+: O($\vert$\+E$\vert$), where E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a53445b1a1bb60ff231f8c46c86dd3912}\label{class_graph_a53445b1a1bb60ff231f8c46c86dd3912}} 
+\index{Graph@{Graph}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dijkstra()}{dijkstra()}}
+{\footnotesize\ttfamily void Graph\+::dijkstra (\begin{DoxyParamCaption}\item[{int}]{a }\end{DoxyParamCaption})}
+
+Algoritmo de Dijkstra que atribui, a todas as paragens do grafo, a distância (double), em Kilometros, até á paragem \textquotesingle{}a\textquotesingle{} e a paragem precedente até à paragem \textquotesingle{}a\textquotesingle{} 
+\begin{DoxyParams}{Parameters}
+{\em a} & int, id da paragem de origem Complexidade Temporal\+: O($\vert$\+E$\vert$log$\vert$\+V$\vert$), where V = stop, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a7f995601c667d9c0586c288887a79a02}\label{class_graph_a7f995601c667d9c0586c288887a79a02}} 
+\index{Graph@{Graph}!dijkstra\_distance@{dijkstra\_distance}}
+\index{dijkstra\_distance@{dijkstra\_distance}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dijkstra\_distance()}{dijkstra\_distance()}}
+{\footnotesize\ttfamily double Graph\+::dijkstra\+\_\+distance (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+Calcula e retorna a distancia (double) em Kilometros entre as paragens a e b, usando o algoritmo de Dijkstra 
+\begin{DoxyParams}{Parameters}
+{\em a} & int, id da paragem de origem \\
+\hline
+{\em b} & int, id da paragem de destino Complexidade Temportal\+: O($\vert$\+E$\vert$log$\vert$\+V$\vert$), where V = stop, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a219b8c662e4b5fe6607f5f2166a9beff}\label{class_graph_a219b8c662e4b5fe6607f5f2166a9beff}} 
+\index{Graph@{Graph}!dijkstra\_path@{dijkstra\_path}}
+\index{dijkstra\_path@{dijkstra\_path}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dijkstra\_path()}{dijkstra\_path()}}
+{\footnotesize\ttfamily list$<$ \mbox{\hyperlink{class_semipath}{Semipath}} $>$ Graph\+::dijkstra\+\_\+path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+Calcula e retorna o caminho (List$<$\+Semipath$>$) entre as paragens a e b, usando o algoritmo de Dijkstra 
+\begin{DoxyParams}{Parameters}
+{\em a} & int, id da paragem de origem \\
+\hline
+{\em b} & int, id da paragem de destino Complexidade Temporal\+: O($\vert$\+E$\vert$log$\vert$\+V$\vert$), where V = stop, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a5faaebcba525ad62a547218d410235f9}\label{class_graph_a5faaebcba525ad62a547218d410235f9}} 
+\index{Graph@{Graph}!get\_path@{get\_path}}
+\index{get\_path@{get\_path}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{get\_path()}{get\_path()}}
+{\footnotesize\ttfamily list$<$ \mbox{\hyperlink{class_semipath}{Semipath}} $>$ Graph\+::get\+\_\+path (\begin{DoxyParamCaption}\item[{list$<$ int $>$}]{path }\end{DoxyParamCaption})}
+
+Converte uma lista de ids de paragens para uma lista de semipaths, para facilitar a escrita do caminho no terminal Semipaths guardam o id da paragem de origem, o código e nome da linha que conecta a paragem com a seguinte 
+\begin{DoxyParams}{Parameters}
+{\em path} & list$<$int$>$, lista de paragens que representa o caminho. Deve ser gerada por \mbox{\hyperlink{class_graph_abfc57714303c9b62bb6d40a80c11f67c}{bfs\+\_\+path()}} ou \mbox{\hyperlink{class_graph_a219b8c662e4b5fe6607f5f2166a9beff}{dijkstra\+\_\+path()}} Complexidade Temporal\+: O(log$\vert$\+V$\vert$$\ast$log$\vert$\+E$\vert$), where V = stops, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a71c0f76f6a96f48e41675f6ebc93eba1}\label{class_graph_a71c0f76f6a96f48e41675f6ebc93eba1}} 
+\index{Graph@{Graph}!hasEdge@{hasEdge}}
+\index{hasEdge@{hasEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{hasEdge()}{hasEdge()}}
+{\footnotesize\ttfamily bool Graph\+::has\+Edge (\begin{DoxyParamCaption}\item[{int}]{src,  }\item[{int}]{dest,  }\item[{double}]{weight,  }\item[{string}]{line,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+Verifica se a edge (src -\/\texorpdfstring{$>$}{>} dest) já existe Retorna True caso exista, False caso contrário 
+\begin{DoxyParams}{Parameters}
+{\em src} & int, id da paragem de origem da edge \\
+\hline
+{\em dest} & int, id da paragem de destino da edge \\
+\hline
+{\em weight} & double, distancia em Kilometros entre as duas paragens \\
+\hline
+{\em line} & string, código da linha que liga as duas paragens \\
+\hline
+{\em name} & string, nome da linha que liga as duas paragens Complexidade Temporal\+: O(log$\vert$\+E$\vert$), where E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+graph.\+h\item 
+graph.\+cpp\end{DoxyCompactItemize}

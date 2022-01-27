@@ -1,0 +1,57 @@
+\hypertarget{graph_8h_source}{}\doxysection{graph.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_GRAPH\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_GRAPH\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}minHeap.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <float.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}Semipath.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{15     \textcolor{keyword}{struct }Edge \{}
+\DoxyCodeLine{16         \textcolor{keywordtype}{int} dest;   \textcolor{comment}{// Destination node}}
+\DoxyCodeLine{17         \textcolor{keywordtype}{double} weight; \textcolor{comment}{// An integer weight}}
+\DoxyCodeLine{18         \textcolor{keywordtype}{string} line, name;}
+\DoxyCodeLine{19     \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keyword}{struct }Node \{}
+\DoxyCodeLine{22         list<Edge> adj; \textcolor{comment}{// The list of outgoing edges (to adjacent nodes)}}
+\DoxyCodeLine{23         \textcolor{keywordtype}{double} dist;}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} pred;}
+\DoxyCodeLine{25         \textcolor{keywordtype}{bool} visited;}
+\DoxyCodeLine{26     \};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keywordtype}{int} n;              \textcolor{comment}{// Graph size (vertices are numbered from 1 to n)}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{bool} hasDir = \textcolor{keyword}{true};        \textcolor{comment}{// false: undirect; true: directed}}
+\DoxyCodeLine{30     vector<Node> nodes; \textcolor{comment}{// The list of nodes being represented}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{33     \textcolor{comment}{// Constructor: nr nodes and direction (default: undirected)}}
+\DoxyCodeLine{34     \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}(\textcolor{keywordtype}{int} nodes);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{comment}{// Add edge from source to destination with a certain weight}}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a2a3d42ec151dde785f8d5b1e30d40b63}{addEdge}}(\textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{double} weight, \textcolor{keyword}{const} \textcolor{keywordtype}{string}\& line, \textcolor{keywordtype}{string} name);}
+\DoxyCodeLine{38     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a71c0f76f6a96f48e41675f6ebc93eba1}{hasEdge}}(\textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{double} weight, \textcolor{keywordtype}{string} line, \textcolor{keywordtype}{string} name);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_a7f995601c667d9c0586c288887a79a02}{dijkstra\_distance}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{41     list<Semipath> \mbox{\hyperlink{class_graph_a219b8c662e4b5fe6607f5f2166a9beff}{dijkstra\_path}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{42     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a53445b1a1bb60ff231f8c46c86dd3912}{dijkstra}}(\textcolor{keywordtype}{int} a); \textcolor{comment}{//distancia para o grafo inteiro}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ae1e45e27c60711dadec619ca17e830a4}{bfs}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{45     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_a21595f74a39ec9bb851b6653c0fd1826}{bfs\_distance}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{46     list<Semipath> \mbox{\hyperlink{class_graph_abfc57714303c9b62bb6d40a80c11f67c}{bfs\_path}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{47     list<Semipath> \mbox{\hyperlink{class_graph_a5faaebcba525ad62a547218d410235f9}{get\_path}}(list<int> path);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}();}
+\DoxyCodeLine{50 \};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

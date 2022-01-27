@@ -1,0 +1,41 @@
+\hypertarget{_base_dados_8h_source}{}\doxysection{Base\+Dados.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef PROJETO2\_BASEDADOS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define PROJETO2\_BASEDADOS\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}graph.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}Stop.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_base_dados}{BaseDados}} \{}
+\DoxyCodeLine{14 \textcolor{keyword}{private}:}
+\DoxyCodeLine{15     map<int, Stop> stopMap;}
+\DoxyCodeLine{16     map<string, int> reverseStopMap;}
+\DoxyCodeLine{17     \mbox{\hyperlink{class_graph}{Graph}} dGraph, mGraph, pdGraph, pmGraph;}
+\DoxyCodeLine{18 \textcolor{keyword}{public}:}
+\DoxyCodeLine{19     \textcolor{keyword}{const} \mbox{\hyperlink{class_graph}{Graph}} \&\mbox{\hyperlink{class_base_dados_ad644e7f1c1b0ddc3ba49e5dbdce23017}{getPdGraph}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keyword}{const} \mbox{\hyperlink{class_graph}{Graph}} \&\mbox{\hyperlink{class_base_dados_aa2f2abfe99145f3522b378a442f68991}{getPmGraph}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24     \mbox{\hyperlink{class_base_dados_a41960049e03d4f53fea9da4a56561463}{BaseDados}}(\mbox{\hyperlink{class_graph}{Graph}} dGraph, \mbox{\hyperlink{class_graph}{Graph}} mGraph, \mbox{\hyperlink{class_graph}{Graph}} pdGraph, \mbox{\hyperlink{class_graph}{Graph}} pmGraph, map<int, Stop> stopMap, map<string, int> reverseStopMap);}
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_base_dados_aeabf1fa024021fda412b10b62fbc7480}{loadAllLines}}();}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_base_dados_a56ed1442a92199827cf56421d1984e7f}{loadLine}}(\textcolor{keywordtype}{string} code, \textcolor{keywordtype}{string} name);}
+\DoxyCodeLine{27     \textcolor{keyword}{static} \textcolor{keywordtype}{double} \mbox{\hyperlink{class_base_dados_ae71590754fafaaa932c1d1ea7c6a7685}{haversine}}(\textcolor{keywordtype}{double} lat1, \textcolor{keywordtype}{double} lon1, \textcolor{keywordtype}{double} lat2, \textcolor{keywordtype}{double} lon2);}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_base_dados_adc8b2c6c2634db698d96c0ce697b40f9}{getDGraph}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_base_dados_a24305deac7ce1349b489794e7573785b}{getMGraph}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{30     map<int, Stop> \mbox{\hyperlink{class_base_dados_a1815c2caa177a0d1191488d0e408cf21}{getStopMap}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{31     map<string, int> \mbox{\hyperlink{class_base_dados_a704915348a3a28a483e62598b1d98b59}{getReverseStopMap}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{32     map<Stop, double> \mbox{\hyperlink{class_base_dados_a7cb8fa36e95a0df759643de771a98ce8}{nearStops}}(\textcolor{keywordtype}{double} lat, \textcolor{keywordtype}{double} lon, \textcolor{keywordtype}{double} radius);}
+\DoxyCodeLine{33     map<Stop, double> \mbox{\hyperlink{class_base_dados_ab6cb4dc7b40be81df3b59327fdb07d58}{nearestStop}}(\textcolor{keywordtype}{double} lat, \textcolor{keywordtype}{double} lon);}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_base_dados_a5fceb413fd133e2d63a267953a487baf}{onFootStops}}();}
+\DoxyCodeLine{35 \};}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJETO2\_BASEDADOS\_H}}
+
+\end{DoxyCode}

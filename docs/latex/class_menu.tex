@@ -1,0 +1,66 @@
+\hypertarget{class_menu}{}\doxysection{Menu Class Reference}
+\label{class_menu}\index{Menu@{Menu}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_menu_af0d13244b820d618743382c36d195b20}\label{class_menu_af0d13244b820d618743382c36d195b20}} 
+static void {\bfseries draw\+Escolha\+DN} ()
+\begin{DoxyCompactList}\small\item\em Mostra no ecrã a opção para escolha de horário diurno ou noturno. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_menu_a965cfb21779d283a1b0452a57c71821b}\label{class_menu_a965cfb21779d283a1b0452a57c71821b}} 
+static void {\bfseries draw\+Escolha\+Par\+Cor} ()
+\begin{DoxyCompactList}\small\item\em Mostra no ecrã as opções de como escolher a viagem. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_menu_a89c636c6b7a1ef2f263282aca98a283a}{draw\+Input\+Par}} (bool origem)
+\item 
+static void \mbox{\hyperlink{class_menu_aa0c225e6f2a41dfe2229f2127e6c15b9}{draw\+Input\+Coord}} (bool origem, bool lat)
+\item 
+\mbox{\Hypertarget{class_menu_ab70a490758beedd29fe4ca64c492167a}\label{class_menu_ab70a490758beedd29fe4ca64c492167a}} 
+static int {\bfseries get\+Num\+Input} ()
+\begin{DoxyCompactList}\small\item\em Mostra no ecrã uma mensagem de erro se tentarmos inserir inputs que não sejam números inteiros. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_menu_a7170a96419818cb784e83f36ec1400d9}\label{class_menu_a7170a96419818cb784e83f36ec1400d9}} 
+static string {\bfseries get\+Str\+Input} ()
+\begin{DoxyCompactList}\small\item\em Mostra no ecrã uma mensagem de erro se não se conseguir ler a string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_menu_ae4098ce59d2d47e83334e3fa745ad5b4}\label{class_menu_ae4098ce59d2d47e83334e3fa745ad5b4}} 
+static double {\bfseries get\+Double\+Input} ()
+\begin{DoxyCompactList}\small\item\em Mostra no ecrã uma mensagem de erro se tentarmos inserir inputs que não sejam doubles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_menu_a1f9be742816e22b7fbd6dcbf7413f54d}\label{class_menu_a1f9be742816e22b7fbd6dcbf7413f54d}} 
+static void {\bfseries draw\+Escolha\+Cor} ()
+\begin{DoxyCompactList}\small\item\em Mostra no ecrã as opções para escolha da paragem. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_menu_af14f7612f1b704058feb1b00ec32252c}\label{class_menu_af14f7612f1b704058feb1b00ec32252c}} 
+static void {\bfseries draw\+Escolha\+Pe} ()
+\begin{DoxyCompactList}\small\item\em Mostra no ecrã a opção para andar entre paragens ou não. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_menu_a125aa0f9d67c0faf8783d0dac1612ba4}\label{class_menu_a125aa0f9d67c0faf8783d0dac1612ba4}} 
+static void {\bfseries draw\+Escolha\+Tipo\+Cam} ()
+\begin{DoxyCompactList}\small\item\em Mostra no ecrã as opções de escolha de caminho. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_menu_aa0c225e6f2a41dfe2229f2127e6c15b9}\label{class_menu_aa0c225e6f2a41dfe2229f2127e6c15b9}} 
+\index{Menu@{Menu}!drawInputCoord@{drawInputCoord}}
+\index{drawInputCoord@{drawInputCoord}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{drawInputCoord()}{drawInputCoord()}}
+{\footnotesize\ttfamily void Menu\+::draw\+Input\+Coord (\begin{DoxyParamCaption}\item[{bool}]{origem,  }\item[{bool}]{lat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Mostra no ecrã o pedido das coordenadas da origem ou do destino, conforme a variável origem 
+\begin{DoxyParams}{Parameters}
+{\em origem} & true se a paragem for a de origem, false se for a de destino \\
+\hline
+{\em lat} & true se quisermos pedir a latitude, false se quisermos pedir a longitude \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_menu_a89c636c6b7a1ef2f263282aca98a283a}\label{class_menu_a89c636c6b7a1ef2f263282aca98a283a}} 
+\index{Menu@{Menu}!drawInputPar@{drawInputPar}}
+\index{drawInputPar@{drawInputPar}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{drawInputPar()}{drawInputPar()}}
+{\footnotesize\ttfamily void Menu\+::draw\+Input\+Par (\begin{DoxyParamCaption}\item[{bool}]{origem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Mostra no ecrã o pedido para o código da paragem de origem, se a variável origem for true, ou a de destino, se origem for false 
+\begin{DoxyParams}{Parameters}
+{\em origem} & true se a paragem for a de origem, false se for a de destino \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Menu.\+h\item 
+Menu.\+cpp\end{DoxyCompactItemize}

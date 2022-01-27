@@ -1,0 +1,196 @@
+\hypertarget{class_base_dados}{}\doxysection{Base\+Dados Class Reference}
+\label{class_base_dados}\index{BaseDados@{BaseDados}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{class_graph}{Graph}} \& \mbox{\hyperlink{class_base_dados_ad644e7f1c1b0ddc3ba49e5dbdce23017}{get\+Pd\+Graph}} () const
+\item 
+const \mbox{\hyperlink{class_graph}{Graph}} \& \mbox{\hyperlink{class_base_dados_aa2f2abfe99145f3522b378a442f68991}{get\+Pm\+Graph}} () const
+\item 
+\mbox{\hyperlink{class_base_dados_a41960049e03d4f53fea9da4a56561463}{Base\+Dados}} (\mbox{\hyperlink{class_graph}{Graph}} d\+Graph, \mbox{\hyperlink{class_graph}{Graph}} m\+Graph, \mbox{\hyperlink{class_graph}{Graph}} pd\+Graph, \mbox{\hyperlink{class_graph}{Graph}} pm\+Graph, map$<$ int, \mbox{\hyperlink{class_stop}{Stop}} $>$ stop\+Map, map$<$ string, int $>$ reverse\+Stop\+Map)
+\item 
+void \mbox{\hyperlink{class_base_dados_aeabf1fa024021fda412b10b62fbc7480}{load\+All\+Lines}} ()
+\item 
+void \mbox{\hyperlink{class_base_dados_a56ed1442a92199827cf56421d1984e7f}{load\+Line}} (string code, string name)
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_base_dados_adc8b2c6c2634db698d96c0ce697b40f9}{get\+DGraph}} () const
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_base_dados_a24305deac7ce1349b489794e7573785b}{get\+MGraph}} () const
+\item 
+map$<$ int, \mbox{\hyperlink{class_stop}{Stop}} $>$ \mbox{\hyperlink{class_base_dados_a1815c2caa177a0d1191488d0e408cf21}{get\+Stop\+Map}} () const
+\item 
+map$<$ string, int $>$ \mbox{\hyperlink{class_base_dados_a704915348a3a28a483e62598b1d98b59}{get\+Reverse\+Stop\+Map}} () const
+\item 
+map$<$ \mbox{\hyperlink{class_stop}{Stop}}, double $>$ \mbox{\hyperlink{class_base_dados_a7cb8fa36e95a0df759643de771a98ce8}{near\+Stops}} (double lat, double lon, double radius)
+\item 
+map$<$ \mbox{\hyperlink{class_stop}{Stop}}, double $>$ \mbox{\hyperlink{class_base_dados_ab6cb4dc7b40be81df3b59327fdb07d58}{nearest\+Stop}} (double lat, double lon)
+\item 
+void \mbox{\hyperlink{class_base_dados_a5fceb413fd133e2d63a267953a487baf}{on\+Foot\+Stops}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{class_base_dados_ae71590754fafaaa932c1d1ea7c6a7685}{haversine}} (double lat1, double lon1, double lat2, double lon2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_base_dados_a41960049e03d4f53fea9da4a56561463}\label{class_base_dados_a41960049e03d4f53fea9da4a56561463}} 
+\index{BaseDados@{BaseDados}!BaseDados@{BaseDados}}
+\index{BaseDados@{BaseDados}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{BaseDados()}{BaseDados()}}
+{\footnotesize\ttfamily Base\+Dados\+::\+Base\+Dados (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph}{Graph}}}]{d\+Graph,  }\item[{\mbox{\hyperlink{class_graph}{Graph}}}]{m\+Graph,  }\item[{\mbox{\hyperlink{class_graph}{Graph}}}]{pd\+Graph,  }\item[{\mbox{\hyperlink{class_graph}{Graph}}}]{pm\+Graph,  }\item[{map$<$ int, \mbox{\hyperlink{class_stop}{Stop}} $>$}]{stop\+Map,  }\item[{map$<$ string, int $>$}]{reverse\+Stop\+Map }\end{DoxyParamCaption})}
+
+Constructor Inicializa os grafos d\+Graph, m\+Graph, pd\+Graph e pm\+Graph e os mapas stop\+Map e reverse\+Stop\+Map 
+\begin{DoxyParams}{Parameters}
+{\em d\+Graph} & grafo para as linhas diurnas \\
+\hline
+{\em m\+Graph} & grafo para as linhas noturnas \\
+\hline
+{\em pd\+Graph} & grafo com as paragens a walking distance e linhas diurnas \\
+\hline
+{\em pm\+Graph} & grafo com as paragens a walking distance e linhas noturnas \\
+\hline
+{\em stop\+Map} & mapa com as keys sendo um id e os values sendo a paragem que lhe corresponde \\
+\hline
+{\em reverse\+Stop\+Map} & mapa com as keys sendo o código da paragem e os values sendo o id dessa paragem \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_base_dados_adc8b2c6c2634db698d96c0ce697b40f9}\label{class_base_dados_adc8b2c6c2634db698d96c0ce697b40f9}} 
+\index{BaseDados@{BaseDados}!getDGraph@{getDGraph}}
+\index{getDGraph@{getDGraph}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{getDGraph()}{getDGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Base\+Dados\+::get\+DGraph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter \begin{DoxyReturn}{Returns}
+d\+Graph retorna o grafo d\+Graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_base_dados_a24305deac7ce1349b489794e7573785b}\label{class_base_dados_a24305deac7ce1349b489794e7573785b}} 
+\index{BaseDados@{BaseDados}!getMGraph@{getMGraph}}
+\index{getMGraph@{getMGraph}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{getMGraph()}{getMGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Base\+Dados\+::get\+MGraph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter \begin{DoxyReturn}{Returns}
+m\+Graph retorna o grafo m\+Graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_base_dados_ad644e7f1c1b0ddc3ba49e5dbdce23017}\label{class_base_dados_ad644e7f1c1b0ddc3ba49e5dbdce23017}} 
+\index{BaseDados@{BaseDados}!getPdGraph@{getPdGraph}}
+\index{getPdGraph@{getPdGraph}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{getPdGraph()}{getPdGraph()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_graph}{Graph}} \& Base\+Dados\+::get\+Pd\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter \begin{DoxyReturn}{Returns}
+pd\+Graph retorna o grafo pd\+Graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_base_dados_aa2f2abfe99145f3522b378a442f68991}\label{class_base_dados_aa2f2abfe99145f3522b378a442f68991}} 
+\index{BaseDados@{BaseDados}!getPmGraph@{getPmGraph}}
+\index{getPmGraph@{getPmGraph}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{getPmGraph()}{getPmGraph()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_graph}{Graph}} \& Base\+Dados\+::get\+Pm\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter \begin{DoxyReturn}{Returns}
+pm\+Graph retorna o grafo pm\+Graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_base_dados_a704915348a3a28a483e62598b1d98b59}\label{class_base_dados_a704915348a3a28a483e62598b1d98b59}} 
+\index{BaseDados@{BaseDados}!getReverseStopMap@{getReverseStopMap}}
+\index{getReverseStopMap@{getReverseStopMap}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{getReverseStopMap()}{getReverseStopMap()}}
+{\footnotesize\ttfamily map$<$ string, int $>$ Base\+Dados\+::get\+Reverse\+Stop\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter \begin{DoxyReturn}{Returns}
+reverse\+Stop\+Map retorna o mapa reverse\+Stop\+Map 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_base_dados_a1815c2caa177a0d1191488d0e408cf21}\label{class_base_dados_a1815c2caa177a0d1191488d0e408cf21}} 
+\index{BaseDados@{BaseDados}!getStopMap@{getStopMap}}
+\index{getStopMap@{getStopMap}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{getStopMap()}{getStopMap()}}
+{\footnotesize\ttfamily map$<$ int, \mbox{\hyperlink{class_stop}{Stop}} $>$ Base\+Dados\+::get\+Stop\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter \begin{DoxyReturn}{Returns}
+Stop\+Map retorna o mapa Stop\+Map 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_base_dados_ae71590754fafaaa932c1d1ea7c6a7685}\label{class_base_dados_ae71590754fafaaa932c1d1ea7c6a7685}} 
+\index{BaseDados@{BaseDados}!haversine@{haversine}}
+\index{haversine@{haversine}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{haversine()}{haversine()}}
+{\footnotesize\ttfamily double Base\+Dados\+::haversine (\begin{DoxyParamCaption}\item[{double}]{lat1,  }\item[{double}]{lon1,  }\item[{double}]{lat2,  }\item[{double}]{lon2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Calcula a distância entre dois pontos, tendo em conta a sua latitude e longitude 
+\begin{DoxyParams}{Parameters}
+{\em lat1} & latitude do ponto 1 \\
+\hline
+{\em lon1} & longitude do ponto 1 \\
+\hline
+{\em lat2} & latitude do ponto 2 \\
+\hline
+{\em lon2} & longitude do ponto 2 Complexidade temporal\+: O(1) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_base_dados_aeabf1fa024021fda412b10b62fbc7480}\label{class_base_dados_aeabf1fa024021fda412b10b62fbc7480}} 
+\index{BaseDados@{BaseDados}!loadAllLines@{loadAllLines}}
+\index{loadAllLines@{loadAllLines}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{loadAllLines()}{loadAllLines()}}
+{\footnotesize\ttfamily void Base\+Dados\+::load\+All\+Lines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Abre o ficheiro lines.\+csv e procede para adicionar todas as linhas aos grafos, chamando a função load\+Line Complexidade temporal\+: O($\vert$\+L$\vert$$\ast$$\vert$\+V$\vert$log$\vert$\+E$\vert$) where L = lines, V = stops, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \mbox{\Hypertarget{class_base_dados_a56ed1442a92199827cf56421d1984e7f}\label{class_base_dados_a56ed1442a92199827cf56421d1984e7f}} 
+\index{BaseDados@{BaseDados}!loadLine@{loadLine}}
+\index{loadLine@{loadLine}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{loadLine()}{loadLine()}}
+{\footnotesize\ttfamily void Base\+Dados\+::load\+Line (\begin{DoxyParamCaption}\item[{string}]{code,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+Recebe o código e nome correspondentes a uma linha, lê essa linha do respetivo ficheiro e adiciona-\/a aos grafos 
+\begin{DoxyParams}{Parameters}
+{\em code} & código da paragem que se pretende dar load \\
+\hline
+{\em name} & nome da paragem que se pretende dar load Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+E$\vert$), where V = stops, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_base_dados_ab6cb4dc7b40be81df3b59327fdb07d58}\label{class_base_dados_ab6cb4dc7b40be81df3b59327fdb07d58}} 
+\index{BaseDados@{BaseDados}!nearestStop@{nearestStop}}
+\index{nearestStop@{nearestStop}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{nearestStop()}{nearestStop()}}
+{\footnotesize\ttfamily map$<$ \mbox{\hyperlink{class_stop}{Stop}}, double $>$ Base\+Dados\+::nearest\+Stop (\begin{DoxyParamCaption}\item[{double}]{lat,  }\item[{double}]{lon }\end{DoxyParamCaption})}
+
+Cria um mapa com a paragem mais perto da posição dada pelo utilizador 
+\begin{DoxyParams}{Parameters}
+{\em lat} & latitude da posição do utilizador \\
+\hline
+{\em lon} & longitude da posição do utilizador \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nearest\+Stop\+Map mapa com a paragem mais próxima e a respetiva distância Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+V$\vert$), where V = stops 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_base_dados_a7cb8fa36e95a0df759643de771a98ce8}\label{class_base_dados_a7cb8fa36e95a0df759643de771a98ce8}} 
+\index{BaseDados@{BaseDados}!nearStops@{nearStops}}
+\index{nearStops@{nearStops}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{nearStops()}{nearStops()}}
+{\footnotesize\ttfamily map$<$ \mbox{\hyperlink{class_stop}{Stop}}, double $>$ Base\+Dados\+::near\+Stops (\begin{DoxyParamCaption}\item[{double}]{lat,  }\item[{double}]{lon,  }\item[{double}]{radius }\end{DoxyParamCaption})}
+
+Cria um mapa com todas as paragens dentro de um raio, com centro na posição dada pelo utilizador 
+\begin{DoxyParams}{Parameters}
+{\em lat} & latitude da posição do utilizador \\
+\hline
+{\em lon} & longitude da posição do utilizador \\
+\hline
+{\em radius} & raio dentro do qual queremos ver as paragens \\
+\hline
+{\em near\+Stops\+Map} & mapa com as paragens dentro do raio dado e a respetiva distância ao utilizador Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+V$\vert$), where V = stops \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_base_dados_a5fceb413fd133e2d63a267953a487baf}\label{class_base_dados_a5fceb413fd133e2d63a267953a487baf}} 
+\index{BaseDados@{BaseDados}!onFootStops@{onFootStops}}
+\index{onFootStops@{onFootStops}!BaseDados@{BaseDados}}
+\doxysubsubsection{\texorpdfstring{onFootStops()}{onFootStops()}}
+{\footnotesize\ttfamily void Base\+Dados\+::on\+Foot\+Stops (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Adiciona aos grafos pd\+Graph e pm\+Graph, a cada paragem, ligações às paragens que estão a menos de 150 metros (walking distance) da própria Complexidade temporal\+: O($\vert$\+V$\vert$$^\wedge$2 log$\vert$\+V$\vert$$^\wedge$2 log$\vert$\+E$\vert$) where V = stops, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Base\+Dados.\+h\item 
+Base\+Dados.\+cpp\end{DoxyCompactItemize}
