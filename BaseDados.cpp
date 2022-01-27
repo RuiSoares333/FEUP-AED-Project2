@@ -121,8 +121,8 @@ void BaseDados::loadLine(string code, string name) {
                 nextid = reverseStopMap[next];
 
                 weight = haversine(stopMap[stopid].getLatitude(), stopMap[stopid].getLongitude(), stopMap[nextid].getLatitude(), stopMap[nextid].getLongitude());
-                mGraph.addEdge(stopid, nextid, weight, code, name);
                 if(code[code.length() - 1] != 'M') dGraph.addEdge(stopid, nextid, weight, code+rev, name);
+                else mGraph.addEdge(stopid, nextid, weight, code, name);
                 stop = next;
             }
         }

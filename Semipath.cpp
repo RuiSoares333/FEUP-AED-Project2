@@ -19,3 +19,5 @@ Semipath::Semipath(int stopid, std::string line, std::string name){
     this->line = std::move(line);
     this->name = std::move(name);
 }
+
+Semipath::Semipath() {}

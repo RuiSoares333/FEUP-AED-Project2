@@ -4,10 +4,14 @@
 
 class Semipath {
 public:
+
     int getStopid() const;
     const std::string &getLine() const;
     const std::string &getName() const;
     Semipath(int stopid, std::string line, std::string name);
+
+    Semipath();
+
 private:
     std::string line, name;
     int stopid;

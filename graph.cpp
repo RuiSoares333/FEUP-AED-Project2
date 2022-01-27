@@ -133,7 +133,7 @@ list<Semipath> Graph::get_path(list<int> path){
 
     stopid = path.front();
     path.pop_front();
-    while(path.size() > 1){
+    while(path.size() >= 1){
         nextid = path.front();
         path.pop_front();
 

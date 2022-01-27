@@ -207,92 +207,116 @@ void getTravel(bool dia, int paragem1, int paragem2, BaseDados bd, double dist1,
     if(pe && bfs){ //andar a pe e caminho com menos paragens
         if(dia){
             graph = bd.getPdGraph();
+            Semipath last;
             cout << "Numero de Paragens: " << int(graph.bfs_distance(paragem1, paragem2)) << endl;
             path = graph.bfs_path(paragem1, paragem2);
             //TODO dizer a distancia a andar a pe
             for(Semipath semi : path){
                 cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
                 if(semi.getName() != "") cout << "   |\n   || " << semi.getLine() << " | " << semi.getName() << "\n   |" << endl;
+                last = semi;
             }
+            cout << last.getName() << endl;
             cout << endl << endl;
         }
         else{
             graph = bd.getPmGraph();
+            Semipath last;
             cout << "Numero de Paragens: " << int(graph.bfs_distance(paragem1, paragem2)) << endl;
             path = graph.bfs_path(paragem1, paragem2);
             //TODO dizer a distancia a andar a pe
             for(Semipath semi : path){
                 cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
                 if(semi.getName() != "") cout << "   |\n   || " << semi.getLine() << " | " << semi.getName() << "\n   |" << endl;
+                last = semi;
             }
+            cout << last.getName() << endl;
             cout << endl << endl;
         }
     }
     else if(pe && !bfs) {//andar a pe e caminho com menor distancia
         if(dia){
             graph = bd.getPdGraph();
-            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << "Km" << endl;
+            Semipath last;
+            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << " Km" << endl;
             path = graph.dijkstra_path(paragem1, paragem2);
             //TODO dizer a distancia a andar a pe
             for(Semipath semi : path){
                 cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
                 if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+                last = semi;
             }
+            cout << last.getName() << endl;
             cout << endl << endl;
         }
         else{
             graph = bd.getPmGraph();
-            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << "Km" << endl;
+            Semipath last;
+            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << " Km" << endl;
             path = graph.dijkstra_path(paragem1, paragem2);
             //TODO dizer a distancia a andar a pe
             for(Semipath semi : path){
                 cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
                 if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+                last = semi;
             }
+            cout << last.getName() << endl;
             cout << endl << endl;
         }
     }
     else if (!pe && bfs){ //nao andar a pe e caminho com menos paragens
         if(dia){
             graph = bd.getDGraph();
+            Semipath last;
             cout << "Numero de Paragens: " << int(graph.bfs_distance(paragem1, paragem2)) << endl;
             path = graph.bfs_path(paragem1, paragem2);
             for(Semipath semi : path){
                 cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
                 if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+                last = semi;
             }
+            cout << last.getName() << endl;
             cout << endl << endl;
         }
         else{
             graph = bd.getMGraph();
+            Semipath last;
             cout << "Numero de Paragens: " << int(graph.bfs_distance(paragem1, paragem2)) << endl;
             path = graph.bfs_path(paragem1, paragem2);
             for(Semipath semi : path){
                 cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
                 if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+                last = semi;
             }
+            cout << last.getName() << endl;
             cout << endl << endl;
         }
     }
     else{ //nao andar a pe e caminho com menor distancia
         if(dia){
             graph = bd.getDGraph();
-            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << "Km" << endl;
+            Semipath last;
+            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << " Km" << endl;
             path = graph.dijkstra_path(paragem1, paragem2);
             for(Semipath semi : path){
                 cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
                 if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+                last = semi;
             }
+            cout << last.getName() << endl;
             cout << endl << endl;
         }
         else{
             graph = bd.getMGraph();
-            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << "Km" << endl;
+            Semipath last;
+            cout << "Distancia: " << graph.dijkstra_distance(paragem1, paragem2) << " Km" << endl;
             path = graph.dijkstra_path(paragem1, paragem2);
             for(Semipath semi : path){
                 cout << stopmap[semi.getStopid()].getCode() << " | " << stopmap[semi.getStopid()].getName() << " | " << stopmap[semi.getStopid()].getZone() << endl;
                 if(semi.getName() != "") cout << "   ||\n   || " << semi.getLine() << " | " << semi.getName() << "\n   ||" << endl;
+                last = semi;
             }
+            cout << last.getName() << endl;
             cout << endl << endl;
         }
     }
