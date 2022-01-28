@@ -20,9 +20,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="iconfinder-rootaccess-4417096_116625.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">G82 - AED - Projeto2
    </div>
+   <div id="projectbrief">Projeto 2 desenvolvido pelo grupo 82 no âmbito da Unidade Curricular de Algoritmos e Estruturas de Dados.</div>
   </td>
  </tr>
  </tbody>
@@ -166,13 +168,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Adiciona uma edge ao grafo que vai de src até dest com direção </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Adiciona uma edge ao grafo que vai de src até dest com direção Complexidade Temporal: O(log|E|), where E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>int, id da paragem de origem da edge </td></tr>
     <tr><td class="paramname">dest</td><td>int, id da paragem de destino da edge </td></tr>
     <tr><td class="paramname">weight</td><td>double, distancia em kilometros entre as paragens src e dest </td></tr>
     <tr><td class="paramname">line</td><td>string, código da linha que conecta as duas paragens </td></tr>
-    <tr><td class="paramname">name</td><td>string, nome da linha que conecta as duas paragens Complexidade Temporal: O(log|E|), where E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">name</td><td>string, nome da linha que conecta as duas paragens </td></tr>
   </table>
   </dd>
 </dl>
@@ -194,9 +196,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Algoritmo de Pesquisa em Largura (BFS) que atribui, a todas as paragens do grafo, a distância (double), em número de paragens, até á paragem 'a' e a paragem precedente até à paragem 'a' </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Algoritmo de Pesquisa em Largura (BFS) que atribui, a todas as paragens do grafo, a distância (double), em número de paragens, até á paragem 'a' e a paragem precedente até à paragem 'a' Complexidade Temporal: O(|E|), where E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>int, id da paragem de origem Complexidade Temporal: O(|E|), where E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">a</td><td>int, id da paragem de origem </td></tr>
   </table>
   </dd>
 </dl>
@@ -228,10 +230,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Calcula e retorna a distancia (double), em número de paragens, entre as paragens a e b, usando o algoritmo BFS </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Calcula e retorna a distancia (double), em número de paragens, entre as paragens a e b, usando o algoritmo BFS Complexidade Temporal: O(|E|), where E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>int, id da paragem de origem </td></tr>
-    <tr><td class="paramname">b</td><td>int, id da paragem de destino Complexidade Temporal: O(|E|), where E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">b</td><td>int, id da paragem de destino </td></tr>
   </table>
   </dd>
 </dl>
@@ -263,10 +265,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Calcula e retorna o caminho (List&lt;Semipath&gt;) entre as paragens a e b, usando o algoritmo BFS </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Calcula e retorna o caminho (List&lt;Semipath&gt;) entre as paragens a e b, usando o algoritmo BFS Complexidade Temporal: O(|E|), where E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>int, id da paragem de origem </td></tr>
-    <tr><td class="paramname">b</td><td>int, id da paragem de destino Complexidade Temporal: O(|E|), where E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">b</td><td>int, id da paragem de destino </td></tr>
   </table>
   </dd>
 </dl>
@@ -288,9 +290,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Algoritmo de Dijkstra que atribui, a todas as paragens do grafo, a distância (double), em Kilometros, até á paragem 'a' e a paragem precedente até à paragem 'a' </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Algoritmo de Dijkstra que atribui, a todas as paragens do grafo, a distância (double), em Kilometros, até á paragem 'a' e a paragem precedente até à paragem 'a' Complexidade Temporal: O(|E|log|V|), where V = stop, E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>int, id da paragem de origem Complexidade Temporal: O(|E|log|V|), where V = stop, E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">a</td><td>int, id da paragem de origem </td></tr>
   </table>
   </dd>
 </dl>
@@ -322,10 +324,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Calcula e retorna a distancia (double) em Kilometros entre as paragens a e b, usando o algoritmo de Dijkstra </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Calcula e retorna a distancia (double) em Kilometros entre as paragens a e b, usando o algoritmo de Dijkstra Complexidade Temportal: O(|E|log|V|), where V = stop, E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>int, id da paragem de origem </td></tr>
-    <tr><td class="paramname">b</td><td>int, id da paragem de destino Complexidade Temportal: O(|E|log|V|), where V = stop, E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">b</td><td>int, id da paragem de destino </td></tr>
   </table>
   </dd>
 </dl>
@@ -357,10 +359,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Calcula e retorna o caminho (List&lt;Semipath&gt;) entre as paragens a e b, usando o algoritmo de Dijkstra </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Calcula e retorna o caminho (List&lt;Semipath&gt;) entre as paragens a e b, usando o algoritmo de Dijkstra Complexidade Temporal: O(|E|log|V|), where V = stop, E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>int, id da paragem de origem </td></tr>
-    <tr><td class="paramname">b</td><td>int, id da paragem de destino Complexidade Temporal: O(|E|log|V|), where V = stop, E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">b</td><td>int, id da paragem de destino </td></tr>
   </table>
   </dd>
 </dl>
@@ -382,9 +384,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Converte uma lista de ids de paragens para uma lista de semipaths, para facilitar a escrita do caminho no terminal Semipaths guardam o id da paragem de origem, o código e nome da linha que conecta a paragem com a seguinte </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Converte uma lista de ids de paragens para uma lista de semipaths, para facilitar a escrita do caminho no terminal Complexidade Temporal: O(log|V|*log|E|), where V = stops, E = edge(stop -&gt; stop) Semipaths guardam o id da paragem de origem, o código e nome da linha que conecta a paragem com a seguinte </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>list&lt;int&gt;, lista de paragens que representa o caminho. Deve ser gerada por <a class="el" href="class_graph.html#abfc57714303c9b62bb6d40a80c11f67c">bfs_path()</a> ou <a class="el" href="class_graph.html#a219b8c662e4b5fe6607f5f2166a9beff">dijkstra_path()</a> Complexidade Temporal: O(log|V|*log|E|), where V = stops, E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">path</td><td>list&lt;int&gt;, lista de paragens que representa o caminho. Deve ser gerada por <a class="el" href="class_graph.html#abfc57714303c9b62bb6d40a80c11f67c">bfs_path()</a> ou <a class="el" href="class_graph.html#a219b8c662e4b5fe6607f5f2166a9beff">dijkstra_path()</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -434,13 +436,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Verifica se a edge (src -&gt; dest) já existe Retorna True caso exista, False caso contrário </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Verifica se a edge (src -&gt; dest) já existe Retorna True caso exista, False caso contrário Complexidade Temporal: O(log|E|), where E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">src</td><td>int, id da paragem de origem da edge </td></tr>
     <tr><td class="paramname">dest</td><td>int, id da paragem de destino da edge </td></tr>
     <tr><td class="paramname">weight</td><td>double, distancia em Kilometros entre as duas paragens </td></tr>
     <tr><td class="paramname">line</td><td>string, código da linha que liga as duas paragens </td></tr>
-    <tr><td class="paramname">name</td><td>string, nome da linha que liga as duas paragens Complexidade Temporal: O(log|E|), where E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">name</td><td>string, nome da linha que liga as duas paragens </td></tr>
   </table>
   </dd>
 </dl>

@@ -119,7 +119,7 @@ Stop\+Map retorna o mapa Stop\+Map
 \doxysubsubsection{\texorpdfstring{haversine()}{haversine()}}
 {\footnotesize\ttfamily double Base\+Dados\+::haversine (\begin{DoxyParamCaption}\item[{double}]{lat1,  }\item[{double}]{lon1,  }\item[{double}]{lat2,  }\item[{double}]{lon2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-Calcula a distância entre dois pontos, tendo em conta a sua latitude e longitude 
+Calcula a distância entre dois pontos, tendo em conta a sua latitude e longitude Complexidade temporal\+: O(1) 
 \begin{DoxyParams}{Parameters}
 {\em lat1} & latitude do ponto 1 \\
 \hline
@@ -127,7 +127,7 @@ Calcula a distância entre dois pontos, tendo em conta a sua latitude e longitud
 \hline
 {\em lat2} & latitude do ponto 2 \\
 \hline
-{\em lon2} & longitude do ponto 2 Complexidade temporal\+: O(1) \\
+{\em lon2} & longitude do ponto 2 \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_base_dados_aeabf1fa024021fda412b10b62fbc7480}\label{class_base_dados_aeabf1fa024021fda412b10b62fbc7480}} 
@@ -142,11 +142,11 @@ Abre o ficheiro lines.\+csv e procede para adicionar todas as linhas aos grafos,
 \doxysubsubsection{\texorpdfstring{loadLine()}{loadLine()}}
 {\footnotesize\ttfamily void Base\+Dados\+::load\+Line (\begin{DoxyParamCaption}\item[{string}]{code,  }\item[{string}]{name }\end{DoxyParamCaption})}
 
-Recebe o código e nome correspondentes a uma linha, lê essa linha do respetivo ficheiro e adiciona-\/a aos grafos 
+Recebe o código e nome correspondentes a uma linha, lê essa linha do respetivo ficheiro e adiciona-\/a aos grafos Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+E$\vert$), where V = stops, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) 
 \begin{DoxyParams}{Parameters}
 {\em code} & código da paragem que se pretende dar load \\
 \hline
-{\em name} & nome da paragem que se pretende dar load Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+E$\vert$), where V = stops, E = edge(stop -\/\texorpdfstring{$>$}{>} stop) \\
+{\em name} & nome da paragem que se pretende dar load \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_base_dados_ab6cb4dc7b40be81df3b59327fdb07d58}\label{class_base_dados_ab6cb4dc7b40be81df3b59327fdb07d58}} 
@@ -155,7 +155,7 @@ Recebe o código e nome correspondentes a uma linha, lê essa linha do respetivo
 \doxysubsubsection{\texorpdfstring{nearestStop()}{nearestStop()}}
 {\footnotesize\ttfamily map$<$ \mbox{\hyperlink{class_stop}{Stop}}, double $>$ Base\+Dados\+::nearest\+Stop (\begin{DoxyParamCaption}\item[{double}]{lat,  }\item[{double}]{lon }\end{DoxyParamCaption})}
 
-Cria um mapa com a paragem mais perto da posição dada pelo utilizador 
+Cria um mapa com a paragem mais perto da posição dada pelo utilizador Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+V$\vert$), where V = stops 
 \begin{DoxyParams}{Parameters}
 {\em lat} & latitude da posição do utilizador \\
 \hline
@@ -163,7 +163,7 @@ Cria um mapa com a paragem mais perto da posição dada pelo utilizador
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-nearest\+Stop\+Map mapa com a paragem mais próxima e a respetiva distância Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+V$\vert$), where V = stops 
+nearest\+Stop\+Map mapa com a paragem mais próxima e a respetiva distância 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_base_dados_a7cb8fa36e95a0df759643de771a98ce8}\label{class_base_dados_a7cb8fa36e95a0df759643de771a98ce8}} 
 \index{BaseDados@{BaseDados}!nearStops@{nearStops}}
@@ -171,7 +171,7 @@ nearest\+Stop\+Map mapa com a paragem mais próxima e a respetiva distância Com
 \doxysubsubsection{\texorpdfstring{nearStops()}{nearStops()}}
 {\footnotesize\ttfamily map$<$ \mbox{\hyperlink{class_stop}{Stop}}, double $>$ Base\+Dados\+::near\+Stops (\begin{DoxyParamCaption}\item[{double}]{lat,  }\item[{double}]{lon,  }\item[{double}]{radius }\end{DoxyParamCaption})}
 
-Cria um mapa com todas as paragens dentro de um raio, com centro na posição dada pelo utilizador 
+Cria um mapa com todas as paragens dentro de um raio, com centro na posição dada pelo utilizador Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+V$\vert$), where V = stops 
 \begin{DoxyParams}{Parameters}
 {\em lat} & latitude da posição do utilizador \\
 \hline
@@ -179,7 +179,7 @@ Cria um mapa com todas as paragens dentro de um raio, com centro na posição da
 \hline
 {\em radius} & raio dentro do qual queremos ver as paragens \\
 \hline
-{\em near\+Stops\+Map} & mapa com as paragens dentro do raio dado e a respetiva distância ao utilizador Complexidade temporal\+: O($\vert$\+V$\vert$log$\vert$\+V$\vert$), where V = stops \\
+{\em near\+Stops\+Map} & mapa com as paragens dentro do raio dado e a respetiva distância ao utilizador \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_base_dados_a5fceb413fd133e2d63a267953a487baf}\label{class_base_dados_a5fceb413fd133e2d63a267953a487baf}} 

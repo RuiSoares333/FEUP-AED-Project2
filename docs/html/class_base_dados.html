@@ -20,9 +20,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="iconfinder-rootaccess-4417096_116625.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">G82 - AED - Projeto2
    </div>
+   <div id="projectbrief">Projeto 2 desenvolvido pelo grupo 82 no âmbito da Unidade Curricular de Algoritmos e Estruturas de Dados.</div>
   </td>
  </tr>
  </tbody>
@@ -320,12 +322,12 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Calcula a distância entre dois pontos, tendo em conta a sua latitude e longitude </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Calcula a distância entre dois pontos, tendo em conta a sua latitude e longitude Complexidade temporal: O(1) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lat1</td><td>latitude do ponto 1 </td></tr>
     <tr><td class="paramname">lon1</td><td>longitude do ponto 1 </td></tr>
     <tr><td class="paramname">lat2</td><td>latitude do ponto 2 </td></tr>
-    <tr><td class="paramname">lon2</td><td>longitude do ponto 2 Complexidade temporal: O(1) </td></tr>
+    <tr><td class="paramname">lon2</td><td>longitude do ponto 2 </td></tr>
   </table>
   </dd>
 </dl>
@@ -375,10 +377,10 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Recebe o código e nome correspondentes a uma linha, lê essa linha do respetivo ficheiro e adiciona-a aos grafos </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Recebe o código e nome correspondentes a uma linha, lê essa linha do respetivo ficheiro e adiciona-a aos grafos Complexidade temporal: O(|V|log|E|), where V = stops, E = edge(stop -&gt; stop) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">code</td><td>código da paragem que se pretende dar load </td></tr>
-    <tr><td class="paramname">name</td><td>nome da paragem que se pretende dar load Complexidade temporal: O(|V|log|E|), where V = stops, E = edge(stop -&gt; stop) </td></tr>
+    <tr><td class="paramname">name</td><td>nome da paragem que se pretende dar load </td></tr>
   </table>
   </dd>
 </dl>
@@ -410,14 +412,14 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Cria um mapa com a paragem mais perto da posição dada pelo utilizador </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Cria um mapa com a paragem mais perto da posição dada pelo utilizador Complexidade temporal: O(|V|log|V|), where V = stops </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lat</td><td>latitude da posição do utilizador </td></tr>
     <tr><td class="paramname">lon</td><td>longitude da posição do utilizador </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>nearestStopMap mapa com a paragem mais próxima e a respetiva distância Complexidade temporal: O(|V|log|V|), where V = stops </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>nearestStopMap mapa com a paragem mais próxima e a respetiva distância </dd></dl>
 
 </div>
 </div>
@@ -452,12 +454,12 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Cria um mapa com todas as paragens dentro de um raio, com centro na posição dada pelo utilizador </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Cria um mapa com todas as paragens dentro de um raio, com centro na posição dada pelo utilizador Complexidade temporal: O(|V|log|V|), where V = stops </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lat</td><td>latitude da posição do utilizador </td></tr>
     <tr><td class="paramname">lon</td><td>longitude da posição do utilizador </td></tr>
     <tr><td class="paramname">radius</td><td>raio dentro do qual queremos ver as paragens </td></tr>
-    <tr><td class="paramname">nearStopsMap</td><td>mapa com as paragens dentro do raio dado e a respetiva distância ao utilizador Complexidade temporal: O(|V|log|V|), where V = stops </td></tr>
+    <tr><td class="paramname">nearStopsMap</td><td>mapa com as paragens dentro do raio dado e a respetiva distância ao utilizador </td></tr>
   </table>
   </dd>
 </dl>

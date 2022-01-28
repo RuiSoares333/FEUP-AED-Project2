@@ -42,11 +42,11 @@ Constructor Cria uma min-\/heap para um máximo de n pares (K, V) com not\+Found
 {\footnotesize\ttfamily template$<$class K , class V $>$ \\
 void \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::decrease\+Key (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{const V \&}]{value }\end{DoxyParamCaption})}
 
-Diminui o valor de determinada key para o valor recebido 
+Diminui o valor de determinada key para o valor recebido Complexidade Temporal\+: O($\vert$\+V$\vert$), where V = stops 
 \begin{DoxyParams}{Parameters}
 {\em key} & key a ser alterada \\
 \hline
-{\em value} & valor para o qual queremos alterar Complexidade Temporal\+: O($\vert$\+V$\vert$), where V = stops \\
+{\em value} & valor para o qual queremos alterar \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_min_heap_a17652e042dae3954be25a1cd9e04f3b0}\label{class_min_heap_a17652e042dae3954be25a1cd9e04f3b0}} 
@@ -66,13 +66,13 @@ número de elementos na heap
 {\footnotesize\ttfamily template$<$class K , class V $>$ \\
 bool \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::has\+Key (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})}
 
-Verifica se uma determinada key está presente na heap 
+Verifica se uma determinada key está presente na heap Complexidade Temporal\+: O($\vert$\+V$\vert$), where V = stops 
 \begin{DoxyParams}{Parameters}
 {\em key} & key que queremos verificar se está na heap \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-true se a key estiver presente na heap, false se não Complexidade Temporal\+: O($\vert$\+V$\vert$), where V = stops 
+true se a key estiver presente na heap, false se não 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_min_heap_a708cab4630ba761be49aea0ae536d772}\label{class_min_heap_a708cab4630ba761be49aea0ae536d772}} 
 \index{MinHeap$<$ K, V $>$@{MinHeap$<$ K, V $>$}!insert@{insert}}
@@ -81,11 +81,11 @@ true se a key estiver presente na heap, false se não Complexidade Temporal\+: O
 {\footnotesize\ttfamily template$<$class K , class V $>$ \\
 void \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::insert (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{const V \&}]{value }\end{DoxyParamCaption})}
 
-Insere o par (key, value) na heap 
+Insere o par (key, value) na heap Complexidade Temporal\+: O($\vert$\+V$\vert$), where V = stops 
 \begin{DoxyParams}{Parameters}
 {\em key} & key do par a ser inserido \\
 \hline
-{\em value} & valor do par a ser inserido Complexidade Temporal\+: O($\vert$\+V$\vert$), where V = stops \\
+{\em value} & valor do par a ser inserido \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_min_heap_a3ab07802846cc4314d7ec383180d3b82}\label{class_min_heap_a3ab07802846cc4314d7ec383180d3b82}} 
@@ -95,8 +95,8 @@ Insere o par (key, value) na heap
 {\footnotesize\ttfamily template$<$class K , class V $>$ \\
 K \mbox{\hyperlink{class_min_heap}{Min\+Heap}}$<$ K, V $>$\+::remove\+Min}
 
-Remove e retorna a key de menor valor \begin{DoxyReturn}{Returns}
-key de menor valor Complexidade Temporal\+: O(log$\vert$\+V$\vert$), where V = stops 
+Remove e retorna a key de menor valor Complexidade Temporal\+: O(log$\vert$\+V$\vert$), where V = stops \begin{DoxyReturn}{Returns}
+key de menor valor 
 \end{DoxyReturn}
 
 
