@@ -45,8 +45,8 @@ public:
 // ----------------------------------------------
 
 /// Faz um valor "subir a árvore" até chegar à posição pretendida
-/// \param i posição final pretendida
 /// Complexidade Temporal: O(log|V|), where V = stops
+/// \param i posição final pretendida
 template <class K, class V>
 void MinHeap<K,V>::upHeap(int i) {
     while (i>1 && a[i].value < a[PARENT(i)].value) { // while pos smaller than parent, keep swapping to upper position
@@ -56,8 +56,8 @@ void MinHeap<K,V>::upHeap(int i) {
 }
 
 /// Faz um valor "descer a árvore" até chegar à posição pretendida
-/// \param i posição final pretendida
 /// Complexidade Temporal: O(log|V|), where V = stops
+/// \param i posição final pretendida
 template <class K, class V>
 void MinHeap<K,V>::downHeap(int i) {
     while (LEFT(i) <= size) { // while within heap limits
@@ -70,9 +70,9 @@ void MinHeap<K,V>::downHeap(int i) {
 }
 
 /// Troca duas posições da heap
+/// Complexidade Temporal: O(1)
 /// \param i1 posição 1 que queremos alterar
 /// \param i2 posição 2 que queremos alterar
-/// Complexidade Temporal: O(1)
 // Swap two positions of the heap (update their positions)
 template <class K, class V>
 void MinHeap<K,V>::swap(int i1, int i2) {
@@ -99,18 +99,18 @@ int MinHeap<K,V>::getSize() {
 }
 
 /// Verifica se uma determinada key está presente na heap
+/// Complexidade Temporal: O(|V|), where V = stops
 /// \param key key que queremos verificar se está na heap
 /// \return true se a key estiver presente na heap, false se não
-/// Complexidade Temporal: O(|V|), where V = stops
 template <class K, class V>
 bool MinHeap<K, V>::hasKey(const K& key) {
     return pos.find(key) != pos.end();
 }
 
 /// Insere o par (key, value) na heap
+/// Complexidade Temporal: O(|V|), where V = stops
 /// \param key key do par a ser inserido
 /// \param value valor do par a ser inserido
-/// Complexidade Temporal: O(|V|), where V = stops
 template <class K, class V>
 void MinHeap<K,V>::insert(const K& key, const V& value) {
     if (size == maxSize) return; // heap is full, do nothing
@@ -121,9 +121,9 @@ void MinHeap<K,V>::insert(const K& key, const V& value) {
 }
 
 /// Diminui o valor de determinada key para o valor recebido
+/// Complexidade Temporal: O(|V|), where V = stops
 /// \param key key a ser alterada
 /// \param value valor para o qual queremos alterar
-/// Complexidade Temporal: O(|V|), where V = stops
 template <class K, class V>
 void MinHeap<K,V>::decreaseKey(const K& key, const V& value) {
     if (!hasKey(key)) return; // key does not exist, do nothing
@@ -134,8 +134,8 @@ void MinHeap<K,V>::decreaseKey(const K& key, const V& value) {
 }
 
 /// Remove e retorna a key de menor valor
-/// \return key de menor valor
 /// Complexidade Temporal: O(log|V|), where V = stops
+/// \return key de menor valor
 template <class K, class V>
 K MinHeap<K,V>::removeMin() {
     if (size == 0) return KEY_NOT_FOUND;

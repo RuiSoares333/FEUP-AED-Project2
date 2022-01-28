@@ -2,11 +2,11 @@
 #include "BaseDados.h"
 
 /// Cria um mapa com todas as paragens dentro de um raio, com centro na posição dada pelo utilizador
+/// Complexidade temporal: O(|V|log|V|), where V = stops
 /// \param lat latitude da posição do utilizador
 /// \param lon longitude da posição do utilizador
 /// \param radius raio dentro do qual queremos ver as paragens
 /// \param nearStopsMap mapa com as paragens dentro do raio dado e a respetiva distância ao utilizador
-/// Complexidade temporal: O(|V|log|V|), where V = stops
 map<Stop, double> BaseDados::nearStops(double lat, double lon, double radius) {
 
     map<Stop, double> nearStopsMap;
@@ -23,10 +23,10 @@ map<Stop, double> BaseDados::nearStops(double lat, double lon, double radius) {
 }
 
 /// Cria um mapa com a paragem mais perto da posição dada pelo utilizador
+/// Complexidade temporal: O(|V|log|V|), where V = stops
 /// \param lat latitude da posição do utilizador
 /// \param lon longitude da posição do utilizador
 /// \return nearestStopMap mapa com a paragem mais próxima e a respetiva distância
-/// Complexidade temporal: O(|V|log|V|), where V = stops
 map<Stop, double> BaseDados::nearestStop(double lat, double lon) {
     map<Stop, double> nearestStopMap;
     map<int, Stop>::iterator iter = stopMap.begin();
@@ -96,9 +96,9 @@ void BaseDados::loadAllLines() {
 }
 
 /// Recebe o código e nome correspondentes a uma linha, lê essa linha do respetivo ficheiro e adiciona-a aos grafos
+/// Complexidade temporal: O(|V|log|E|), where V = stops, E = edge(stop -> stop)
 /// \param code código da paragem que se pretende dar load
 /// \param name nome da paragem que se pretende dar load
-/// Complexidade temporal: O(|V|log|E|), where V = stops, E = edge(stop -> stop)
 void BaseDados::loadLine(string code, string name) {
     ifstream line;
     int n, stopid, nextid;
@@ -131,11 +131,11 @@ void BaseDados::loadLine(string code, string name) {
 }
 
 /// Calcula a distância entre dois pontos, tendo em conta a sua latitude e longitude
+/// Complexidade temporal: O(1)
 /// \param lat1 latitude do ponto 1
 /// \param lon1 longitude do ponto 1
 /// \param lat2 latitude do ponto 2
 /// \param lon2 longitude do ponto 2
-/// Complexidade temporal: O(1)
 double BaseDados::haversine(double lat1, double lon1, double lat2, double lon2) {
     double dLat = (lat2 - lat1) *
                   M_PI / 180.0;

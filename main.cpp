@@ -30,8 +30,8 @@ int main() {
 }
 
 /// Cria um mapa com as keys sendo o código de uma paragem e os values sendo o id correspondente a essa paragem
-/// \param stopMap mapa com as keys sendo o id de uma paragem e os values sendo a paragem correspondente
 /// Complexidade temporal: O(|V|), where V = stops
+/// \param stopMap mapa com as keys sendo o id de uma paragem e os values sendo a paragem correspondente
 map<string, int> reverseStops(map<int, Stop> stopMap) {
     map<int, Stop>::iterator iter;
 
