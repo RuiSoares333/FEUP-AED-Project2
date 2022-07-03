@@ -1,12 +1,12 @@
-# FEUP-AED-Project1
+# FEUP-AED-Project2
 
-First Project for the Course Algoritmos e Estruturas de Dados (AED) at Faculdade de Engenharia do Porto (FEUP)
+Second Project for the Course Algoritmos e Estruturas de Dados (AED) at Faculdade de Engenharia do Porto (FEUP)
 
 ## Unit info
 
 - **Name**: Algoritmos e Estruturas de Dados (Algorithms and Data Structures)
 - **Date**: Year 2, Semester 1, 2021/22
-- **See also**: [FEUP-AED-Project2](https://github.com/GoncaloMarques-up/FEUP-AED-Project2)
+- **See also**: [FEUP-AED-Project1](https://github.com/GoncaloMarques-up/FEUP-AED-Project1)
 - [**More info**](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=484404)
 
 ## Disclaimer
